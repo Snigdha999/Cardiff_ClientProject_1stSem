@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statistics</title>
+    <link rel="stylesheet" href="../static/applications.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+<main>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admissions</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/statistics">Statistics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/applications">Applications</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">Add
+        application
+    </button>
+    <div class="table-responsive the-table">
+        <table class="table table-hover table-fixed">
+            <thead class="table-light">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">UCAS Cardiff Course</th>
+                <th scope="col">Cardiff Course Code</th>
+                <th scope="col">Record First Created</th>
+                <th scope="col">Entry Year</th>
+                <th scope="col">Student No</th>
+                <th scope="col">Personal Id</th>
+                <th scope="col">Application Status Code</th>
+                <th scope="col">Lastest Decision Code (CAP)</th>
+                <th scope="col">First Forename</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Fee Status</th>
+                <th scope="col">Correspondence Lang Welsh?</th>
+                <th scope="col">Welsh Speaker Indicator</th>
+                <th scope="col">Country of domicile</th>
+                <th scope="col">Nationality</th>
+                <th scope="col">Home Email</th>
+                <th scope="col">Date received from ADMIS</th>
+                <th scope="col">Contextual Flag?</th>
+                <th scope="col">Application Status in HCARE Admissions Office</th>
+                <th scope="col">Application Status Comments</th>
+                <th scope="col">Fee Status Comments</th>
+                <th scope="col">Highest Level Qualification</th>
+                <th scope="col">Grades achieved</th>
+                <th scope="col">Keeping Warm Email Sent?</th>
+                <th scope="col">Total Personal Statement Score</th>
+                <th scope="col">Invite to Interview Sent?</th>
+                <th scope="col">Interview Date</th>
+                <th scope="col">Interview Invite Comments</th>
+                <th scope="col">Total Interview Score</th>
+                <th scope="col">FTP Checked</th>
+                <th scope="col">Offer Conditions</th>
+                <th scope="col">Non-standard Quals chaser email</th>
+                <th scope="col">Grades Achieved</th>
+                <th scope="col">Confirmation Comments</th>
+                <th scope="col">Offer Email Sent</th>
+                <th scope="col">Issue Date</th>
+                <th scope="col">DBS Cert Number</th>
+                <th scope="col">FA Status</th>
+                <th scope="col">Update Service</th>
+                <th scope="col">Essential to Dos</th>
+                <th scope="col">Enrolment Criteria Comments</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="applicationItem : ${listApplications}">
+                <th scope="row" th:text="${applicationItem.id}"></th>
+                <td th:text="${applicationItem.ucasCode}"></td>
+                <td th:text="${applicationItem.courseCode}"></td>
+                <td th:text="${applicationItem.firstCreated}"></td>
+                <td th:text="${applicationItem.entryYear}"></td>
+                <td th:text="${applicationItem.studentNumber}"></td>
+                <td th:text="${applicationItem.personalId}"></td>
+                <td th:text="${applicationItem.statusCode}"></td>
+                <td th:text="${applicationItem.latestDecision}"></td>
+                <td th:text="${applicationItem.name}"></td>
+                <td th:text="${applicationItem.surname}"></td>
+                <td th:text="${applicationItem.dateOfBirth}"></td>
+                <td th:text="${applicationItem.gender}"></td>
+                <td th:text="${applicationItem.feeStatus}"></td>
+                <td th:text="${applicationItem.correspondenceLang}"></td>
+                <td th:text="${applicationItem.welshSpeaker}"></td>
+                <td th:text="${applicationItem.country}"></td>
+                <td th:text="${applicationItem.nationality}"></td>
+                <td th:text="${applicationItem.email}"></td>
+                <td th:text="${applicationItem.dateReceived}"></td>
+                <td th:text="${applicationItem.contextual}"></td>
+                <td th:text="${applicationItem.applicationStatus}"></td>
+                <td th:text="${applicationItem.applicationStatusComments}"></td>
+                <td th:text="${applicationItem.feeStatusComments}"></td>
+                <td th:text="${applicationItem.highestQualification}"></td>
+                <td th:text="${applicationItem.gradesAchieved}"></td>
+                <td th:text="${applicationItem.keepEmailSent}"></td>
+                <td th:text="${applicationItem.personalStatementScore}"></td>
+                <td th:text="${applicationItem.inviteToInterview}"></td>
+                <td th:text="${applicationItem.interviewDate}"></td>
+                <td th:text="${applicationItem.interviewComments}"></td>
+                <td th:text="${applicationItem.interviewScore}"></td>
+                <td th:text="${applicationItem.ftpChecked}"></td>
+                <td th:text="${applicationItem.offerConditions}"></td>
+                <td th:text="${applicationItem.nonStandardEmail}"></td>
+                <td th:text="${applicationItem.gradesAchieved2}"></td>
+                <td th:text="${applicationItem.confirmationComments}"></td>
+                <td th:text="${applicationItem.offerEmailSent}"></td>
+                <td th:text="${applicationItem.issueDate}"></td>
+                <td th:text="${applicationItem.dbsCertNumber}"></td>
+                <td th:text="${applicationItem.faStatus}"></td>
+                <td th:text="${applicationItem.updateService}"></td>
+                <td th:text="${applicationItem.essentialToDos}"></td>
+                <td th:text="${applicationItem.enrolmentCriteriaComments}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addStatisticsModal"
+         tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLabel">Add application</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/addApplication}" th:object="${application}" method="post">
+                        <div class="mb-3">
+                            <label for="ucasCode" class="form-label">Input UCAS Cardiff course:</label>
+                            <input type="text" class="form-control" id="ucasCode"
+                                   field="*{ucasCode}" name="ucasCode">
+                        </div>
+                        <div class="mb-3">
+                            <label for="courseCode" class="form-label">Input Cardiff course code:</label>
+                            <input type="text" class="form-control" id="courseCode" field="*{courseCode}"
+                                   name="courseCode">
+                        </div>
+                        <div class="mb-3">
+                            <label for="firstCreated" class="form-label">Input when record was first
+                                created:</label>
+                            <input type="text" class="form-control" id="firstCreated"
+                                   field="*{firstCreated}" name="firstCreated">
+                        </div>
+                        <div class="mb-3">
+                            <label for="entryYear" class="form-label">Input entry year:</label>
+                            <input type="text" class="form-control" id="entryYear" field="*{entryYear}"
+                                   name="entryYear">
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentNumber" class="form-label">Input student number:</label>
+                            <input type="text" class="form-control" id="studentNumber"
+                                   field="*{studentNumber}" name="studentNumber">
+                        </div>
+                        <div class="mb-3">
+                            <label for="personalId" class="form-label">Input personal Id:</label>
+                            <input type="text" class="form-control" id="personalId" field="*{personalId}"
+                                   name="personalId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="statusCode" class="form-label">Input application status code:</label>
+                            <input type="text" class="form-control" id="statusCode"
+                                   field="*{statusCode}" name="statusCode">
+                        </div>
+                        <div class="mb-3">
+                            <label for="latestDecision" class="form-label">Input latest decision Code (CAP):</label>
+                            <input type="text" class="form-control" id="latestDecision" field="*{latestDecision}"
+                                   name="latestDecision">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Input first forename:</label>
+                            <input type="text" class="form-control" id="name"
+                                   field="*{name}" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Input surname:</label>
+                            <input type="text" class="form-control" id="surname" field="*{surname}" name="surname">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateOfBirth" class="form-label">Input date of birth:</label>
+                            <input type="text" class="form-control" id="dateOfBirth"
+                                   field="*{dateOfBirth}" name="dateOfBirth">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Input gender:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender"
+                                       id="gender1" field="*{gender}" value="male">
+                                <label class="form-check-label" for="gender1">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender"
+                                       id="gender2" field="*{gender}" value="female">
+                                <label class="form-check-label" for="gender2">
+                                    Female
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender"
+                                       id="gender3" field="*{gender}" value="other">
+                                <label class="form-check-label" for="gender3">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="feeStatus" class="form-label">Input fee status:</label>
+                            <input type="text" class="form-control" id="feeStatus"
+                                   field="*{feeStatus}" name="feeStatus">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Correspondence Lang Welsh?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="correspondenceLang"
+                                       id="correspondenceLang1" field="*{correspondenceLang}" value="yes">
+                                <label class="form-check-label" for="correspondenceLang1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="correspondenceLang"
+                                       id="correspondenceLang2" field="*{correspondenceLang}" value="no" checked>
+                                <label class="form-check-label" for="correspondenceLang2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Welsh speaker?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="welshSpeaker"
+                                       id="welshSpeaker1" field="*{welshSpeaker}" value="yes">
+                                <label class="form-check-label" for="welshSpeaker1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="welshSpeaker"
+                                       id="welshSpeaker2" field="*{welshSpeaker}" value="no" checked>
+                                <label class="form-check-label" for="welshSpeaker2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Input country of domicile:</label>
+                            <input type="text" class="form-control" id="country" field="*{country}" name="country">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nationality" class="form-label">Input nationality:</label>
+                            <input type="text" class="form-control" id="nationality"
+                                   field="*{nationality}" name="nationality">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Input home email:</label>
+                            <input type="email" class="form-control" id="email" field="*{email}" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateReceived" class="form-label">Date received from ADMIS:</label>
+                            <input type="text" class="form-control" id="dateReceived"
+                                   field="*{dateReceived}" name="dateReceived">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contextual flag?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="contextual"
+                                       id="contextual1" field="*{contextual}" value="yes">
+                                <label class="form-check-label" for="contextual1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="contextual"
+                                       id="contextual2" field="*{contextual}" value="no" checked>
+                                <label class="form-check-label" for="contextual2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="applicationStatus" class="form-label">Input application status in HCARE
+                                Admissions
+                                Office:</label>
+                            <input type="text" class="form-control" id="applicationStatus"
+                                   field="*{applicationStatus}" name="applicationStatus">
+                        </div>
+                        <div class="mb-3">
+                            <label for="applicationStatusComments" class="form-label">Input application status
+                                comments:</label>
+                            <input type="text" class="form-control" id="applicationStatusComments"
+                                   field="*{applicationStatusComments}" name="applicationStatusComments">
+                        </div>
+                        <div class="mb-3">
+                            <label for="feeStatusComments" class="form-label">Input fee status comments:</label>
+                            <input type="text" class="form-control" id="feeStatusComments"
+                                   field="*{feeStatusComments}" name="feeStatusComments">
+                        </div>
+                        <div class="mb-3">
+                            <label for="highestQualification" class="form-label">Input highest level qualification
+                                (Pending/Awarded):</label>
+                            <input type="text" class="form-control" id="highestQualification"
+                                   field="*{highestQualification}" name="highestQualification">
+                        </div>
+                        <div class="mb-3">
+                            <label for="gradesAchieved" class="form-label">Input grades achieved:</label>
+                            <input type="text" class="form-control" id="gradesAchieved"
+                                   field="*{gradesAchieved}" name="gradesAchieved">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Keeping warm email sent?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="keepEmailSent"
+                                       id="keepEmailSent1" field="*{keepEmailSent}" value="yes">
+                                <label class="form-check-label" for="keepEmailSent1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="keepEmailSent"
+                                       id="keepEmailSent2" field="*{keepEmailSent}" value="no" checked>
+                                <label class="form-check-label" for="keepEmailSent2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="personalStatementScore" class="form-label">Input total personal statement
+                                score
+                                (if
+                                applicable):</label>
+                            <input type="text" class="form-control" id="personalStatementScore"
+                                   field="*{personalStatementScore}" name="personalStatementScore">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Invite to interview sent?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="inviteToInterview"
+                                       id="inviteToInterview1" field="*{inviteToInterview}" value="yes">
+                                <label class="form-check-label" for="inviteToInterview1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="inviteToInterview"
+                                       id="inviteToInterview2" field="*{inviteToInterview}" value="no" checked>
+                                <label class="form-check-label" for="inviteToInterview2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="interviewDate" class="form-label">Input interview date:</label>
+                            <input type="text" class="form-control" id="interviewDate"
+                                   field="*{interviewDate}" name="interviewDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="interviewComments" class="form-label">Input interview invite
+                                comments:</label>
+                            <input type="text" class="form-control" id="interviewComments"
+                                   field="*{interviewComments}"
+                                   name="interviewComments">
+                        </div>
+                        <div class="mb-3">
+                            <label for="interviewScore" class="form-label">Input total interview score:</label>
+                            <input type="text" class="form-control" id="interviewScore"
+                                   field="*{interviewScore}" name="interviewScore">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">FTP Checked?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ftpChecked"
+                                       id="ftpChecked1" field="*{ftpChecked}" value="yes">
+                                <label class="form-check-label" for="ftpChecked1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ftpChecked"
+                                       id="ftpChecked2" field="*{ftpChecked}" value="no" checked>
+                                <label class="form-check-label" for="ftpChecked2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="offerConditions" class="form-label">Input offer conditions:</label>
+                            <input type="text" class="form-control" id="offerConditions"
+                                   field="*{offerConditions}" name="offerConditions">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nonStandardEmail" class="form-label">Non-standard Quals chaser
+                                email:</label>
+                            <input type="text" class="form-control" id="nonStandardEmail"
+                                   field="*{nonStandardEmail}"
+                                   name="nonStandardEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="gradesAchieved2" class="form-label">Input grades achieved:</label>
+                            <input type="text" class="form-control" id="gradesAchieved2"
+                                   field="*{gradesAchieved2}" name="gradesAchieved2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmationComments" class="form-label">Input confirmation
+                                comments:</label>
+                            <input type="text" class="form-control" id="confirmationComments"
+                                   field="*{confirmationComments}" name="confirmationComments">
+                        </div>
+                        <div class="mb-3">
+                            <label for="offerEmailSent" class="form-label">Offer Email Sent?</label>
+                            <input type="text" class="form-control" id="offerEmailSent" field="*{offerEmailSent}"
+                                   name="offerEmailSent">
+                        </div>
+                        <div class="mb-3">
+                            <label for="issueDate" class="form-label">Input issue date:</label>
+                            <input type="text" class="form-control" id="issueDate"
+                                   field="*{issueDate}" name="issueDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dbsCertNumber" class="form-label">Input DBS certificate number:</label>
+                            <input type="text" class="form-control" id="dbsCertNumber" field="*{dbsCertNumber}"
+                                   name="dbsCertNumber">
+                        </div>
+                        <div class="mb-3">
+                            <label for="faStatus" class="form-label">Input FA status (In progress/Complete
+                                etc?):</label>
+                            <input type="text" class="form-control" id="faStatus" field="*{faStatus}"
+                                   name="faStatus">
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateService" class="form-label">Update Service:</label>
+                            <input type="text" class="form-control" id="updateService"
+                                   field="*{updateService}" name="updateService">
+                        </div>
+                        <div class="mb-3">
+                            <label for="essentialToDos" class="form-label">Essential to Dos:</label>
+                            <input type="text" class="form-control" id="essentialToDos" field="*{essentialToDos}"
+                                   name="essentialToDos">
+                        </div>
+                        <div class="mb-3">
+                            <label for="enrolmentCriteriaComments" class="form-label">Input enrolment criteria
+                                comments:</label>
+                            <input type="text" class="form-control" id="enrolmentCriteriaComments"
+                                   field="*{enrolmentCriteriaComments}" name="enrolmentCriteriaComments">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+</html>
