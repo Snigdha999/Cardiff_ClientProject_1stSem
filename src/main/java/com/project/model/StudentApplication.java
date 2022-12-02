@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "applications")
-public class Application {
+public class StudentApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "UCAS_code")
+    @Column(name = "ucas_code")
     private String ucasCode;
     @Column(name = "course_code")
     private String courseCode;
@@ -76,8 +76,6 @@ public class Application {
     private String offerConditions;
     @Column(name = "non_standard_email")
     private String nonStandardEmail;
-    @Column(name = "grades_achieved2")
-    private String gradesAchieved2;
     @Column(name = "confirmation_comments")
     private String confirmationComments;
     @Column(name = "offer_email_sent")
@@ -373,14 +371,6 @@ public class Application {
 
     public void setNonStandardEmail(String nonStandardEmail) {
         this.nonStandardEmail = nonStandardEmail;
-    }
-
-    public String getGradesAchieved2() {
-        return gradesAchieved2;
-    }
-
-    public void setGradesAchieved2(String gradesAchieved2) {
-        this.gradesAchieved2 = gradesAchieved2;
     }
 
     public String getConfirmationComments() {

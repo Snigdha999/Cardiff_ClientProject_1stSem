@@ -1,26 +1,26 @@
 package com.project.controller;
 
-import com.project.model.Application;
-import com.project.service.ApplicationService;
+import com.project.model.StudentApplication;
+import com.project.service.StudentApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class ApplicationController {
+public class StudentApplicationController {
     @Autowired
-    private ApplicationService applicationService;
+    private StudentApplicationService studentApplicationService;
 
     @GetMapping("/applications")
     public String viewApplicationsPage(Model model) {
-        model.addAttribute("listApplications", applicationService.getAll());
+        model.addAttribute("listApplications", studentApplicationService.getAll());
         return "applications";
     }
 
     @PostMapping("/addApplication")
-    public String addApplication(@ModelAttribute("application") Application application) {
-        applicationService.add(application);
+    public String addApplication(@ModelAttribute("newApplication") StudentApplication studentApplication) {
+        studentApplicationService.add(studentApplication);
         return "redirect:/applications";
     }
 }

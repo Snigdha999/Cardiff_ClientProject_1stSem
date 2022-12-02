@@ -75,7 +75,6 @@
                 <th scope="col">FTP Checked</th>
                 <th scope="col">Offer Conditions</th>
                 <th scope="col">Non-standard Quals chaser email</th>
-                <th scope="col">Grades Achieved</th>
                 <th scope="col">Confirmation Comments</th>
                 <th scope="col">Offer Email Sent</th>
                 <th scope="col">Issue Date</th>
@@ -123,7 +122,6 @@
                 <td th:text="${applicationItem.ftpChecked}"></td>
                 <td th:text="${applicationItem.offerConditions}"></td>
                 <td th:text="${applicationItem.nonStandardEmail}"></td>
-                <td th:text="${applicationItem.gradesAchieved2}"></td>
                 <td th:text="${applicationItem.confirmationComments}"></td>
                 <td th:text="${applicationItem.offerEmailSent}"></td>
                 <td th:text="${applicationItem.issueDate}"></td>
@@ -145,7 +143,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/addApplication}" th:object="${application}" method="post">
+                    <form th:action="@{/addApplication}" th:object="${newApplication}" method="post">
                         <div class="mb-3">
                             <label for="ucasCode" class="form-label">Input UCAS Cardiff course:</label>
                             <input type="text" class="form-control" id="ucasCode"
@@ -415,11 +413,6 @@
                             <input type="text" class="form-control" id="nonStandardEmail"
                                    field="*{nonStandardEmail}"
                                    name="nonStandardEmail">
-                        </div>
-                        <div class="mb-3">
-                            <label for="gradesAchieved2" class="form-label">Input grades achieved:</label>
-                            <input type="text" class="form-control" id="gradesAchieved2"
-                                   field="*{gradesAchieved2}" name="gradesAchieved2">
                         </div>
                         <div class="mb-3">
                             <label for="confirmationComments" class="form-label">Input confirmation
