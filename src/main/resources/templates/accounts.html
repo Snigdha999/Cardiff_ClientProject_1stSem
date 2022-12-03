@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:insert="template :: header"></head>
+  <body>
+    <!-- Navigation bar -->
+    <nav th:insert="template :: navbar"></nav>
+    <!-- Main page -->
+    <main>
+      <h3>Accounts</h3>
+      <div class="buttonRow">
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addAccountsModel">Add Account</button>
+          <button type="button" class="btn btn-secondary">Delete Account</button>
+      </div>
+      <table class="table table-hover">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+            <th scope="col">Account Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="accountsItem : ${listAccounts}">
+            <td th:text="${accountsItem.id}"></td>
+            <td th:text="${accountsItem.username}"></td>
+            <td th:text="${accountsItem.password}"></td>
+            <td th:text="${accountsItem.isSuperUser}"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addAccountsModel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalLabel">Add Account</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form th:action="@{/addAccount}" th:object="${accountsItem}" method="post">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username:</label>
+                  <input type="text" required class="form-control" id="username" aria-describedby="username" placeholder="ExampleUser" field="*{username}" name="username">
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password:</label>
+                  <input type="password" required class="form-control" id="password" field="*{password}" name="password">
+                </div>
+                <div class="mb-3">
+                  <label for="repeatPassword" class="form-label">Repeat password:</label>
+                  <input type="password" required class="form-control" id="repeatPassword" name="repeatPassword">
+                </div>
+                <div class="mb-3">
+                  <label for="isAdminUser" class="form-label">Make this user an admin?</label>
+                  <input type="text" required class="form-control" id="isAdminUser" field="*{isAdminUser}" name="isAdminUser">
+                  <p>Admin users can edit all data and create/edit/delete accounts.</p>
+                </div>
+                <button type="submit" class="btn btn-danger">Create account</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
