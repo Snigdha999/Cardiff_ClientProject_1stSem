@@ -2,6 +2,9 @@ package com.project.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Entity
 @Table(name = "applications")
 public class StudentApplication {
@@ -49,7 +52,7 @@ public class StudentApplication {
     @Column(name = "contextual")
     private String contextual;
     @Column(name = "application_status")
-    private String applicationStatus;
+    private List<ApplicationStatus> applicationStatus;
     @Column(name = "application_status_comments")
     private String applicationStatusComments;
     @Column(name = "fee_status_comments")
@@ -261,11 +264,11 @@ public class StudentApplication {
         this.contextual = contextual;
     }
 
-    public String getApplicationStatus() {
+    public List<ApplicationStatus> getApplicationStatus() {
         return applicationStatus;
     }
 
-    public void setApplicationStatus(String applicationStatus) {
+    public void setApplicationStatus(List<ApplicationStatus> applicationStatus) {
         this.applicationStatus = applicationStatus;
     }
 
@@ -435,5 +438,12 @@ public class StudentApplication {
 
     public void setEnrolmentCriteriaComments(String enrolmentCriteriaComments) {
         this.enrolmentCriteriaComments = enrolmentCriteriaComments;
+    }
+
+    public String displayApplicationStatus() {
+        if(applicationStatus == null) {
+            return "";
+        }
+        return applicationStatus.stream().map(Enum::toString).collect(Collectors.joining(""));
     }
 }

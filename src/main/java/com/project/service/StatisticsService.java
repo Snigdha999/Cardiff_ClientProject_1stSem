@@ -11,8 +11,8 @@ public interface StatisticsService {
      */
     public List<Statistics> getAll();
 
-   /* Adding data in the statistics table
-    * @param statistics
-    */
+    /* Adding data in the statistics table
+     * @param statistics
+     */
     public void add(Statistics statistics);
 }

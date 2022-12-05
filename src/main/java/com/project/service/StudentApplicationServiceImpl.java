@@ -28,4 +28,3 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
         this.studentApplicationRepository.save(studentApplication);
     }
 }
-
