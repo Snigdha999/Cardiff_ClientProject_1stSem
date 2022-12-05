@@ -1,11 +1,16 @@
 package com.project.controller;
 
+import com.project.model.ApplicationStatus;
 import com.project.model.StudentApplication;
 import com.project.service.StudentApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class StudentApplicationController {
@@ -14,7 +19,9 @@ public class StudentApplicationController {
 
     @GetMapping("/applications")
     public String viewApplicationsPage(Model model) {
-        model.addAttribute("listApplications", studentApplicationService.getAll());
+        List<StudentApplication> applications = studentApplicationService.getAll();
+        model.addAttribute("listApplications", applications);
+        model.addAttribute("applicationStatusList", ApplicationStatus.values());
         return "applications";
     }
 
