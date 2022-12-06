@@ -14,7 +14,7 @@ public class Accounts {
     @Column(name = "password")
     private String password;
     @Column(name = "isSuperUser")
-    private boolean isSuperUser;
+    private String isSuperUser;
 
     public int getId() {
         return id;
@@ -40,11 +40,11 @@ public class Accounts {
         this.password = password;
     }
 
-    public Boolean getIsSuperUser() {
+    public String getIsSuperUser() {
         return isSuperUser;
     }
 
-    public void setIsSuperUser(Boolean isSuperUser) {
+    public void setIsSuperUser(String isSuperUser) {
         this.isSuperUser = isSuperUser;
     }
 
