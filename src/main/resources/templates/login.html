@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in - Recruitment and Commissions</title>
+    <link rel="stylesheet" th:href="@{css/login.css}">
+</head>
+<body>
+    <div class="card" id="logInCard">
+        <form th:action="@{/login}" method="post" id="logInForm">
+            <div id="logoContainer">
+                <img th:src="@{images/logo.svg}" id="logo" alt="">
+                <div id="labelContainer">
+                    <label>Recriwtio a Derbyn</label>
+                    <label>Recruitment and Admissions</label>
+                </div>
+            </div>
+            <h3 id="logInFormHeader">Log in</h3>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <div th:if="${param.error}" class="error">⚠ Your username or password was incorrect</div>
+            <div th:if="${param.logout}" class="error">⚠ You have been logged out</div>
+            <div id="rowOfButtons">
+                <input type="submit" form="logInForm" value="Log in">
+                <button class="secondary">Create account</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
