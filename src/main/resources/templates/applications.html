@@ -71,9 +71,8 @@
                 <td>
                     <div class="d-flex">
                        <div><button class="me-1" data-bs-toggle="modal" data-bs-target="#addStatisticsModal"><i class="fa-solid fa-pen"></i></button></div>
-                        <div> <button th:href="@{/deleteStudentApplication/{id}(id=${applicationItem.id})}" class="me-1"><i class="fa-regular fa-trash-can"></i></button></div>
-                        <div> <button class="change-status-btn" data-bs-toggle="modal" data-bs-target="#changeStatusModal">
-                            Change Status</button></div>
+                        <div><a th:href="@{/deleteStudentApplication/{id}(id=${applicationItem.id})}" class="btn btn-outline-dark me-1"><i class="fa-regular fa-trash-can"></i></a></div>
+                        <div> <button class="change-status-btn" data-bs-toggle="modal" data-bs-target="#changeStatusModal">Change Status</button></div>
                     </div>
                 </td>
                 <th scope="row" th:text="${applicationItem.id}"></th>
