@@ -17,5 +17,14 @@ public interface StatisticsService {
      */
     public void add(Statistics statistics);
 
-    Statistics getStatisticsById(int id);
+    /* Getting data from the statistics table by id
+     * @param id
+     * @return Statistics
+     */
+    public Statistics getStatisticsById(int id);
+
+    /* Delete the data in the Statistics table by id
+     * @param id
+     */
+    public void deleteStatisticsById(int id);
 }

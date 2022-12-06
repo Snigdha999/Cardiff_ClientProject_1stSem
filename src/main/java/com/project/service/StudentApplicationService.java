@@ -16,8 +16,15 @@ public interface StudentApplicationService {
      */
     public void add(StudentApplication studentApplication);
 
-    StudentApplication getStudentApplicationById(int id);
+    /* Getting data from the application table by id
+     * @param id
+     * @return StudentApplication
+     */
+    public StudentApplication getStudentApplicationById(int id);
 
-    void deleteStudentApplicationById(int id);
+    /* Delete the data in the Application table by id
+     * @param id
+     */
+    public void deleteStudentApplicationById(int id);
 
 }

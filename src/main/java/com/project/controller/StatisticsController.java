@@ -23,4 +23,11 @@ public class StatisticsController {
         statisticsService.add(statistics);
         return "redirect:/statistics";
     }
+
+    @GetMapping("/deleteStatistics/{id}")
+    public String deleteStatistics(@PathVariable (value = "id") int id){
+        //Call delete student's statistics method
+        this.statisticsService.deleteStatisticsById(id);
+        return "redirect:/statistics";
+    }
 }
