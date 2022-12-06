@@ -3,6 +3,7 @@
 <head>
     <div th:replace="template :: header"></div>
     <link rel="stylesheet" th:href="@{applications.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <!-- Navigation bar -->
@@ -10,8 +11,8 @@
 <!-- Main page -->
 <main>
     <div class="buttonRow">
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">Add
-            application
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">
+           Add application
         </button>
         <button type="button" class="btn btn-secondary">Export data</button>
     </div>
@@ -19,6 +20,7 @@
         <table class="table table-hover table-fixed">
             <thead class="table-light">
             <tr>
+                <th scope="col"></th>
                 <th scope="col">Id</th>
                 <th scope="col">UCAS Cardiff Course</th>
                 <th scope="col">Cardiff Course Code</th>
@@ -66,6 +68,11 @@
             </thead>
             <tbody>
             <tr th:each="applicationItem : ${listApplications}">
+                <td>
+                    <button><i class="fa-solid fa-pen"></i></button>
+                    <button><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="change-status-btn">Change Status</button>
+                </td>
                 <th scope="row" th:text="${applicationItem.id}"></th>
                 <td th:text="${applicationItem.ucasCode}"></td>
                 <td th:text="${applicationItem.courseCode}"></td>
