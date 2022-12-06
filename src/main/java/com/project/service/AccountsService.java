@@ -7,5 +7,5 @@ import java.util.List;
 public interface AccountsService {
     List<Accounts> getAll();
 
-    void add(Accounts accounts);
+    public void add(Accounts accounts);
 }
