@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentApplicationServiceImpl implements StudentApplicationService {
@@ -27,4 +28,25 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
     public void add(StudentApplication studentApplication) {
         this.studentApplicationRepository.save(studentApplication);
     }
+
+
+    @Override
+    public StudentApplication getStudentApplicationById(int id){
+        Optional<StudentApplication> optional = studentApplicationRepository.findById(id);
+        StudentApplication studentApplication = null;
+        if(optional.isPresent()){
+            studentApplication = optional.get();
+        }else{
+            throw new RuntimeException(" The student's application not found for id :: " + id);
+
+        }
+        return studentApplication;
+
+    }
+
+    @Override
+    public void deleteStudentApplicationById(int id) {
+        this.studentApplicationRepository.deleteById(id);
+    }
+
 }
