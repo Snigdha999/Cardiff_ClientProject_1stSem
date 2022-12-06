@@ -7,3 +7,20 @@
 .modal-body {
   padding: 30px;
 }
+
+button{
+  height: 38px;
+  width: 38px;
+  border-radius: 4px;
+  padding: 6px 12px 6px 12px;
+  border: 1px solid #212529;
+}
+button:hover{
+  background-color:grey;
+}
+.add-btn{
+  height: 39px;
+  width: 102px;
+  left: 254px;
+  top: 223px;
+}
