@@ -23,4 +23,15 @@ public class StudentApplicationController {
         studentApplicationService.add(studentApplication);
         return "redirect:/applications";
     }
+
+
+    @GetMapping("/deleteStudentApplication/{id}")
+    public String deleteStudentApplication(@PathVariable (value = "id") int id){
+
+        //Call delete students' applications method
+        this.studentApplicationService.deleteStudentApplicationById(id);
+        return "redirect:/applications";
+    }
+
+
 }
