@@ -45,8 +45,8 @@
                     </ul>
                     <div class="accountInfo d-flex">
                         <img th:src="@{images/profile.png}" width="25px" alt="User account profile picture">
-                        <label id="username">Example User</label>
-                        <a href="/signout">Sign out</a>
+                        <label th:inline="text" id="username">Example User</label>
+                        <a href="/login?logout">Sign out</a>
                     </div>
                 </div>
             </div>
