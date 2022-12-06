@@ -1,11 +1,13 @@
 package com.project.service;
 
 import com.project.model.Statistics;
+import com.project.model.StudentApplication;
 import com.project.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -26,5 +28,19 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public void add(Statistics statistics) {
         this.statisticsRepository.save(statistics);
+    }
+
+    @Override
+    public Statistics  getStatisticsById(int id){
+        Optional<Statistics> optional = statisticsRepository.findById(id);
+        Statistics statistics = null;
+        if(optional.isPresent()){
+            statistics = optional.get();
+        }else{
+            throw new RuntimeException(" The data not found for id :: " + id);
+
+        }
+        return statistics;
+
     }
 }

@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.project.model.Statistics;
+import com.project.model.StudentApplication;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface StatisticsService {
      * @param statistics
      */
     public void add(Statistics statistics);
+
+    Statistics getStatisticsById(int id);
 }

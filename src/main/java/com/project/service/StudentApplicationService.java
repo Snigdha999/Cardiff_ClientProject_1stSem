@@ -15,4 +15,9 @@ public interface StudentApplicationService {
      * @return List
      */
     public void add(StudentApplication studentApplication);
+
+    StudentApplication getStudentApplicationById(int id);
+
+    void deleteStudentApplicationById(int id);
+
 }
