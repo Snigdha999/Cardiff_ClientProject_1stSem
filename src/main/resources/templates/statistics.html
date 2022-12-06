@@ -3,6 +3,7 @@
 <head>
     <div th:replace="template :: header"></div>
     <link rel="stylesheet" th:href="@{statistics.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <!-- Navigation bar -->
@@ -10,14 +11,15 @@
 <!-- Main content -->
 <main>
     <div class="buttonRow">
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">Add
-            data
+        <button type="button" class="add-btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">Add
+            Add data
         </button>
     </div>
     <div class="table-responsive the-table">
         <table class="table table-hover table-fixed table-container">
             <thead class="table-light">
             <tr>
+                <th scope="col"></th>
                 <th scope="col">Year</th>
                 <th scope="col">Places</th>
                 <th scope="col">Offers</th>
@@ -25,6 +27,10 @@
             </thead>
             <tbody>
             <tr th:each="statisticsItem : ${listStatistics}">
+                <td>
+                    <button><i class="fa-solid fa-pen"></i></button>
+                    <button><i class="fa-regular fa-trash-can"></i></button>
+                </td>
                 <td th:text="${statisticsItem.studyYear}"></td>
                 <td th:text="${statisticsItem.places}"></td>
                 <td th:text="${statisticsItem.offers}"></td>
