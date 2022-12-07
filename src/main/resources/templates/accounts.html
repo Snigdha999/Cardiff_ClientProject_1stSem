@@ -56,10 +56,13 @@
                   <label class="inputError" id="passwordsDontMatch">⚠ Passwords don't match</label>
                 </div>
                 <div class="mb-3">
-                  <input type="checkbox" id="isSuperUser" name="isSuperUser">
-                  <label for="isSuperUser">Make this user an admin</label>
-                  <input type="text" class="form-control" id="hiddenFieldIsSuperUser" value="user" field="*{accountType}" name="isSuperUser"><br>
-                  <p style="color: gray;">Admin users can edit all data and create/edit/delete accounts.</p>
+<!--                  <input type="checkbox" id="isSuperUser" name="isSuperUser">-->
+<!--                  <label for="isSuperUser">Make this user an admin</label>-->
+<!--                  <input type="text" class="form-control" id="hiddenFieldIsSuperUser" value="user" field="*{accountType}" name="isSuperUser"><br>-->
+<!--                  <p style="color: gray;">Admin users can edit all data and create/edit/delete accounts.</p>-->
+                  <input class="form-check-input" type="checkbox" name="isAdminUser" id="isAdminUser"
+                         field="*{isAdminUser}" value="Admin">
+                  <label class="form-check-label" for="isAdminUser"> Admin users can edit all data and create/edit/delete accounts. </label>
                 </div>
                 <button type="submit" id="createAccountButton" class="btn btn-danger noClick">Create account</button>
               </form>

@@ -14,7 +14,6 @@ let validRepeatPassword = false;
 // Add event listener for when the user types anything on the repeat password field
 passwordInput.addEventListener('input', checkMatchingPasswords);
 repeatPasswordInput.addEventListener('input', checkMatchingPasswords);
-isSuperUser.addEventListener('input', setSuperUserProp);
 
 function checkMatchingPasswords(e)
 {
