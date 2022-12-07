@@ -41,13 +41,17 @@ public class StudentApplicationController {
         return "redirect:/applications";
     }
 
-    @GetMapping("/updateStudentApplication/{id}")
-    public String updateStudentApplication(@PathVariable (value = "id") int id){
-        ModelAndView model = new ModelAndView("edit-application");
+    @GetMapping("/getStudentApplication/{id}")
+    public String getStudentApplication(@PathVariable (value = "id") int id, Model model){
         StudentApplication application = studentApplicationService.getStudentApplicationById(id);
-        model.addObject("updateApplication", application);
-        System.out.println(application);
+        model.addAttribute("applicationStatusList", ApplicationStatus.values());
+        model.addAttribute("updateApplication", application);
         return "updateApplication";
     }
 
+    @PostMapping("/updateStudentApplication/{id}")
+    public String updateStudentApplication(@PathVariable (value = "id") int id, @ModelAttribute("newApplication") StudentApplication studentApplication){
+        studentApplicationService.add(studentApplication);
+        return "redirect:/applications";
+    }
 }
