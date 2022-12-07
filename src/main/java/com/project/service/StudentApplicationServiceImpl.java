@@ -5,6 +5,7 @@ import com.project.repository.StudentApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,10 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
      * @return List
      */
     @Override
-    public List<StudentApplication> getAll() {
+    public List<StudentApplication> getAll(String studentNo) {
+        if(studentNo != null) {
+            return studentApplicationRepository.findAll(studentNo);
+        }
         return studentApplicationRepository.findAll();
     }
 
@@ -70,6 +74,4 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
         }
         return counter;
     }
-
-
 }
