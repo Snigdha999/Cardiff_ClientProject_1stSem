@@ -12,11 +12,17 @@ public class AccountsServiceImpl implements AccountsService {
     @Autowired
     private AccountsRepository accountsRepository;
 
+    /* Getting all data
+     * @return List
+     */
     @Override
     public List<Accounts> getAll() {
         return accountsRepository.findAll();
     }
 
+    /* Adding the data
+     * @param Accounts
+     */
     @Override
     public void add(Accounts accounts) {
         this.accountsRepository.save(accounts);
