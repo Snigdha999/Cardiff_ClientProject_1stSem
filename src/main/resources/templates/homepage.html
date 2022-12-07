@@ -25,7 +25,8 @@
                 <img th:src="@{applicationcard.png}" width="100px" alt="card1">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Applications</h5>
-                    <p class="card-text">We have received <mark>(number)</mark> applications from students.</p>
+                    <p class="card-text">The number of the students' applications we have received are:</p>
+                    <p class="card-text" th:text="${amountOfApplications}"></p>
                     <a href="#" class="btn btn-danger">View Details</a>
                 </div>
             </div>
@@ -35,7 +36,8 @@
                 <img th:src="@{offercard.png}" width="100px" alt="card2">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Offers</h5>
-                    <p class="card-text">We have <mark>(number)</mark> offers in this current year.</p>
+                    <p class="card-text">The number of the students' offers we have accepted are:</p>
+                    <p class="card-text" th:text="${amountOfOffers}"></p>
                     <a href="#" class="btn btn-danger">View Details</a>
                 </div>
             </div>

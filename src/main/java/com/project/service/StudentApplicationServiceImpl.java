@@ -49,4 +49,27 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
         this.studentApplicationRepository.deleteById(id);
     }
 
+
+    @Override
+    public int getAmountApplications(){
+        List<StudentApplication> applications = studentApplicationRepository.findAll();
+
+        return applications.size();
+    }
+
+    @Override
+    public int getAmountOfOffers(){
+        int counter = 0;
+        List<StudentApplication> applications = studentApplicationRepository.findAll();
+        for(int i=0; i < applications.size(); i++){
+            String status = applications.get(i).displayApplicationStatus();
+            // status = "CFUF" , offer + 1
+            if(status.equals("CFUF")){
+                counter += 1;
+            }
+        }
+        return counter;
+    }
+
+
 }
