@@ -27,7 +27,13 @@ public interface StudentApplicationService {
      */
     public void deleteStudentApplicationById(int id);
 
+    /* Fetching the amount of application data
+     * @return int
+     */
     public int getAmountApplications();
 
+    /* Fetching the amount of offers data
+     * @return int
+     */
     public int getAmountOfOffers();
 }

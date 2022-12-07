@@ -58,6 +58,10 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
     public void deleteStudentApplicationById(int id) {
         this.studentApplicationRepository.deleteById(id);
     }
+
+    /* Fetching the amount of application data
+     * @return int
+     */
     @Override
     public int getAmountApplications(){
         List<StudentApplication> applications = studentApplicationRepository.findAll();
@@ -65,6 +69,9 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
         return applications.size();
     }
 
+    /* Fetching the amount of offers data
+     * @return int
+     */
     @Override
     public int getAmountOfOffers(){
         int counter = 0;
