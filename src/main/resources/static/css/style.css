@@ -10,6 +10,19 @@ main
     gap: 25px;
 }
 
+.inputError
+{
+    margin-top: 5px;
+    color: darkred;
+    display: none;
+}
+
+.noClick
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .buttonRow
 {
     display: flex;
@@ -25,6 +38,12 @@ main
     gap: 10px;
 }
 
+.sensitive
+{
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .accountInfo > label
 {
     font-weight: bold;
@@ -33,6 +52,11 @@ main
 .accountInfo > a
 {
     color: red;
+}
+
+.btn > img
+{
+    width: 16px;
 }
 
 .accountInfo > a:hover
