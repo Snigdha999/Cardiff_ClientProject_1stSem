@@ -27,4 +27,8 @@ public interface StudentApplicationService {
      */
     public void deleteStudentApplicationById(int id);
 
+    public int getAmountApplications();
+
+    public int getAmountOfOffers();
+
 }
