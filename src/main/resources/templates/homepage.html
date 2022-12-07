@@ -27,7 +27,7 @@
                     <h5 class="card-title">Amount of Applications</h5>
                     <p class="card-text">The number of the students' applications we have received are:</p>
                     <p class="card-text" th:text="${amountOfApplications}"></p>
-                    <a href="#" class="btn btn-danger">View Details</a>
+                    <a href="/applications" class="btn btn-danger">View Details</a>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <h5 class="card-title">Amount of Offers</h5>
                     <p class="card-text">The number of the students' offers we have accepted are:</p>
                     <p class="card-text" th:text="${amountOfOffers}"></p>
-                    <a href="#" class="btn btn-danger">View Details</a>
+                    <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
             </div>
         </div>
@@ -47,16 +47,29 @@
                 <img th:src="@{placecard.png}" width="100px" alt="card3">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Places</h5>
-                    <p class="card-text">We have <mark>(number)</mark> funded places in this current year.</p>
-                    <a href="#" class="btn btn-danger">View Details</a>
+                    <p class="card-text">The number of the students' funded places we have are:</p>
+                    <p class="card-text">NbFromDB</p>
+                    <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <h2>
+        The Bar Chart ->>
+    </h2>
+
+
+    <h2>
+        The Calculations ->>
+    </h2>
+
+
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+
+</script>
 </body>
 </html>
