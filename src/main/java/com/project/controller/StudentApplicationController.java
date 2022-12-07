@@ -4,6 +4,7 @@ import com.project.model.ApplicationStatus;
 import com.project.model.StudentApplication;
 import com.project.service.StudentApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,14 @@ public class StudentApplicationController {
     @Autowired
     private StudentApplicationService studentApplicationService;
 
-    @GetMapping("/applications")
-    public String viewApplicationsPage(Model model) {
-        List<StudentApplication> applications = studentApplicationService.getAll();
+    @RequestMapping("/applications")
+    public String viewApplicationsPage(@Param("keyword") String keyword, Model model) {
+        List<StudentApplication> applications = studentApplicationService.getAll(keyword);
         model.addAttribute("listApplications", applications);
         model.addAttribute("applicationStatusList", ApplicationStatus.values());
+        if(applications.size() == 0) {
+            return "noApplicationsFound";
+        }
         return "applications";
     }
 

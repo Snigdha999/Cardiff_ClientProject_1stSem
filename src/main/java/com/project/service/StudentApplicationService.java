@@ -9,7 +9,7 @@ public interface StudentApplicationService {
     /* Getting all the data in the Application table
      * @return List
      */
-    public List<StudentApplication> getAll();
+    public List<StudentApplication> getAll(String studentNo);
 
     /* Adding all the data in the Application table
      * @return List
@@ -30,5 +30,4 @@ public interface StudentApplicationService {
     public int getAmountApplications();
 
     public int getAmountOfOffers();
-
 }
