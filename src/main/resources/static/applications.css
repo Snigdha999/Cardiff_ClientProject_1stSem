@@ -25,3 +25,8 @@ button:hover{
 .change-status-btn{
   width:128px;
 }
+
+.edit-status {
+  white-space:nowrap;
+}
+

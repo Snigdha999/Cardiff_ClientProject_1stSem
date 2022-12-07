@@ -2,10 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="template :: header"></div>
-    <link rel="stylesheet" th:href="@{applications.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="applications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <!-- Navigation bar -->
@@ -87,17 +85,9 @@
             <tr th:each="applicationItem : ${listApplications}">
                 <td>
                     <div class="d-flex">
-                        <div>
-                            <button class="me-1" data-bs-toggle="modal" data-bs-target="#addStatisticsModal"><i
-                                    class="fa-solid fa-pen"></i></button>
-                        </div>
-                        <div><a th:href="@{/deleteStudentApplication/{id}(id=${applicationItem.id})}"
-                                class="btn btn-outline-dark me-1"><i class="fa-regular fa-trash-can"></i></a></div>
-                        <div>
-                            <button class="change-status-btn" data-bs-toggle="modal"
-                                    data-bs-target="#changeStatusModal">Change Status
-                            </button>
-                        </div>
+                        <a th:href="@{/getStudentApplication/{id}(id=${applicationItem.id})}" class="btn btn-outline-dark me-1"><i class="fa-solid fa-pen"></i></a>
+                        <a th:href="@{/deleteStudentApplication/{id}(id=${applicationItem.id})}" class="btn btn-outline-dark me-1"><i class="fa-regular fa-trash-can"></i></a>
+                        <a class="btn btn-outline-dark me-1 edit-status" data-bs-toggle="modal" data-bs-target="#changeStatusModal">Change Status</a>
                     </div>
                 </td>
                 <th scope="row" th:text="${applicationItem.id}"></th>

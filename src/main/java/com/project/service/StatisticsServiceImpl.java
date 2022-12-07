@@ -30,6 +30,10 @@ public class StatisticsServiceImpl implements StatisticsService {
         this.statisticsRepository.save(statistics);
     }
 
+    /* Getting data from the statistics table by id
+     * @param id
+     * @return Statistics
+     */
     @Override
     public Statistics  getStatisticsById(int id){
         Optional<Statistics> optional = statisticsRepository.findById(id);
@@ -43,4 +47,13 @@ public class StatisticsServiceImpl implements StatisticsService {
         return statistics;
 
     }
+
+    /* Delete the data in the Statistics table by id
+     * @param id
+     */
+    @Override
+    public void deleteStatisticsById(int id) {
+        this.statisticsRepository.deleteById(id);
+    }
+
 }
