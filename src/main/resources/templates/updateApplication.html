@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="template :: header"></div>
+    <link rel="stylesheet" href="../updateApplication.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+<!-- Navigation bar -->
+<nav th:replace="template :: navbar('applications')"></nav>
+<!-- Main page -->
+<main>
+    <!-- New Modal -->
+    <div class="card w-75">
+        <div class="card-header">
+            Edit Application
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Update application fields here:</h5>
+            <form th:action="@{/updateStudentApplication/{id}(id=${updateApplication.id})}" th:object="${newApplication}" method="post" class="form">
+                <div>
+                    <div class="mb-3">
+                        <label for="ucasCode1" class="form-label">Input UCAS Cardiff course:</label>
+                        <input type="text" class="form-control" id="ucasCode1" field="${ucasCode}"
+                               name="ucasCode" th:value="${updateApplication.ucasCode}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="courseCode1" class="form-label">Input Cardiff course code:</label>
+                        <input type="text" class="form-control" id="courseCode1" field="*{courseCode}"
+                               name="courseCode" th:value="${updateApplication.courseCode}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="firstCreated1" class="form-label">Input when record was first
+                            created:</label>
+                        <input type="text" class="form-control" id="firstCreated1" field="*{firstCreated}"
+                               name="firstCreated" th:value="${updateApplication.firstCreated}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="entryYear1" class="form-label">Input entry year:</label>
+                        <input type="text" class="form-control" id="entryYear1" field="*{entryYear}"
+                               name="entryYear" th:value="${updateApplication.entryYear}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentNumber1" class="form-label">Input student number:</label>
+                        <input type="text" class="form-control" id="studentNumber1" field="*{studentNumber}"
+                               name="studentNumber" th:value="${updateApplication.studentNumber}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="personalId1" class="form-label">Input personal Id:</label>
+                        <input type="text" class="form-control" id="personalId1" field="*{personalId}"
+                               name="personalId" th:value="${updateApplication.personalId}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="statusCode1" class="form-label">Input application status code:</label>
+                        <input type="text" class="form-control" id="statusCode1" field="*{statusCode}"
+                               name="statusCode" th:value="${updateApplication.statusCode}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="latestDecision1" class="form-label">Input latest decision Code (CAP):</label>
+                        <input type="text" class="form-control" id="latestDecision1" field="*{latestDecision}"
+                               name="latestDecision" th:value="${updateApplication.latestDecision}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name1" class="form-label">Input first forename:</label>
+                        <input type="text" class="form-control" id="name1" field="*{name}" name="name"
+                               th:value="${updateApplication.name}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname1" class="form-label">Input surname:</label>
+                        <input type="text" class="form-control" id="surname1" field="*{surname}" name="surname"
+                               th:value="${updateApplication.surname}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateOfBirth1" class="form-label">Input date of birth:</label>
+                        <input type="text" class="form-control" id="dateOfBirth1" field="*{dateOfBirth}"
+                               name="dateOfBirth" th:value="${updateApplication.dateOfBirth}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Input gender:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="newGender1"
+                                   field="*{gender}" value="male"
+                                   th:checked="${updateApplication.getGender()?.equals('male')}">
+                            <label class="form-check-label" for="newGender1"> Male </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="newGender2"
+                                   field="*{gender}" value="female"
+                                   th:checked="${updateApplication.getGender()?.equals('female')}">
+                            <label class="form-check-label" for="newGender2"> Female </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" id="newGender3"
+                                   field="*{gender}" value="other"
+                                   th:checked="${updateApplication.getGender()?.equals('other')}">
+                            <label class="form-check-label" for="newGender3"> Other </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="feeStatus1" class="form-label">Input fee status:</label>
+                        <input type="text" class="form-control" id="feeStatus1" field="*{feeStatus}"
+                               name="feeStatus" th:value="${updateApplication.feeStatus}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Correspondence Lang Welsh?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="correspondenceLang"
+                                   id="newCorrespondenceLang1" field="*{correspondenceLang}" value="yes"
+                                   th:checked="${updateApplication.getCorrespondenceLang()?.equals('yes')}">
+                            <label class="form-check-label" for="newCorrespondenceLang1"> Yes </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="correspondenceLang"
+                                   id="newCorrespondenceLang2" field="*{correspondenceLang}" value="no"
+                                   th:checked="${updateApplication.getCorrespondenceLang()?.equals('no')}">
+                            <label class="form-check-label" for="newCorrespondenceLang2"> No </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Welsh speaker?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="welshSpeaker" id="newWelshSpeaker1"
+                                   field="*{welshSpeaker}" value="yes"
+                                   th:checked="${updateApplication.getWelshSpeaker()?.equals('yes')}">
+                            <label class="form-check-label" for="newWelshSpeaker1"> Yes </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="welshSpeaker" id="newWelshSpeaker2"
+                                   field="*{welshSpeaker}" value="no"
+                                   th:checked="${updateApplication.getWelshSpeaker()?.equals('no')}">
+                            <label class="form-check-label" for="newWelshSpeaker2"> No </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country1" class="form-label">Input country of domicile:</label>
+                        <input type="text" class="form-control" id="country1" field="*{country}"
+                               th:value="${updateApplication.country}" name="country">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nationality1" class="form-label">Input nationality:</label>
+                        <input type="text" class="form-control" id="nationality1" field="*{nationality}"
+                               name="nationality" th:value="${updateApplication.nationality}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email1" class="form-label">Input home email:</label>
+                        <input type="email" class="form-control" id="email1" field="*{email}" name="email"
+                               th:value="${updateApplication.email}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateReceived1" class="form-label">Date received from ADMIS:</label>
+                        <input type="text" class="form-control" id="dateReceived1" field="*{dateReceived}"
+                               name="dateReceived" th:value="${updateApplication.dateReceived}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contextual flag?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="contextual" id="newContextual1"
+                                   field="*{contextual}" value="yes"
+                                   th:checked="${updateApplication.getContextual()?.equals('yes')}">
+                            <label class="form-check-label" for="newContextual1"> Yes </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="contextual" id="newContextual2"
+                                   field="*{contextual}" value="no"
+                                   th:checked="${updateApplication.getContextual()?.equals('no')}">
+                            <label class="form-check-label" for="newContextual2"> No </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Choose application status in HCARE Admissions Office:</label>
+                        <ul class="application-status">
+                            <li th:each="status : ${applicationStatusList}" class="application-status-item">
+                                <input class="form-check-input" type="checkbox" field="*{applicationStatus}"
+                                       th:value="${status}" name="applicationStatus"  th:checked="${updateApplication.getApplicationStatus()?.contains(status)}">
+                                <label th:text="${status}"></label>
+                        </ul>
+                    </div>
+                    <div class="mb-3">
+                        <label for="applicationStatusComments1" class="form-label">Input application status
+                            comments:</label>
+                        <input type="text" class="form-control" id="applicationStatusComments1"
+                               field="*{applicationStatusComments}" name="applicationStatusComments"
+                               th:value="${updateApplication.applicationStatusComments}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="feeStatusComments1" class="form-label">Input fee status comments:</label>
+                        <input type="text" class="form-control" id="feeStatusComments1"
+                               field="*{feeStatusComments}"
+                               name="feeStatusComments" th:value="${updateApplication.feeStatusComments}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="highestQualification1" class="form-label">Input highest level qualification
+                            (Pending/Awarded):</label>
+                        <input type="text" class="form-control" id="highestQualification1"
+                               field="*{highestQualification}" name="highestQualification"
+                               th:value="${updateApplication.highestQualification}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="gradesAchieved1" class="form-label">Input grades achieved:</label>
+                        <input type="text" class="form-control" id="gradesAchieved1" field="*{gradesAchieved}"
+                               name="gradesAchieved" th:value="${updateApplication.gradesAchieved}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Keeping warm email sent?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="keepEmailSent"
+                                   id="newKeepEmailSent1"
+                                   field="*{keepEmailSent}" value="yes"
+                                   th:checked="${updateApplication.getKeepEmailSent()?.equals('yes')}">
+                            <label class="form-check-label" for="newKeepEmailSent1"> Yes </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="keepEmailSent"
+                                   id="newKeepEmailSent2"
+                                   field="*{keepEmailSent}" value="no"
+                                   th:checked="${updateApplication.getKeepEmailSent()?.equals('no')}">
+                            <label class="form-check-label" for="newKeepEmailSent2"> No </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="personalStatementScore1" class="form-label">Input total personal statement
+                            score
+                            (if applicable):</label>
+                        <input type="text" class="form-control" id="personalStatementScore1"
+                               field="*{personalStatementScore}" name="personalStatementScore"
+                               th:value="${updateApplication.personalStatementScore}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Invite to interview sent?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="inviteToInterview"
+                                   id="newInviteToInterview1" field="*{inviteToInterview}" value="yes"
+                                   th:checked="${updateApplication.getInviteToInterview()?.equals('yes')}">
+                            <label class="form-check-label" for="newInviteToInterview1"> Yes </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="inviteToInterview"
+                                   id="newInviteToInterview2" field="*{inviteToInterview}" value="no"
+                                   th:checked="${updateApplication.getInviteToInterview()?.equals('no')}">
+                            <label class="form-check-label" for="newInviteToInterview2"> No </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="interviewDate1" class="form-label">Input interview date:</label>
+                        <input type="text" class="form-control" id="interviewDate1" field="*{interviewDate}"
+                               name="interviewDate" th:value="${updateApplication.interviewDate}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="interviewComments1" class="form-label">Input interview invite
+                            comments:</label>
+                        <input type="text" class="form-control" id="interviewComments1"
+                               field="*{interviewComments}"
+                               name="interviewComments" th:value="${updateApplication.interviewComments}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="interviewScore1" class="form-label">Input total interview score:</label>
+                        <input type="text" class="form-control" id="interviewScore1" field="*{interviewScore}"
+                               name="interviewScore" th:value="${updateApplication.interviewScore}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">FTP Checked?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ftpChecked" id="newFtpChecked1"
+                                   field="*{ftpChecked}" value="yes"
+                                   th:checked="${updateApplication.getFtpChecked()?.equals('yes')}">
+                            <label class="form-check-label" for="newFtpChecked1"> Yes </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ftpChecked" id="newFtpChecked2"
+                                   field="*{ftpChecked}" value="no"
+                                   th:checked="${updateApplication.getFtpChecked()?.equals('no')}">
+                            <label class="form-check-label" for="newFtpChecked2"> No </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="offerConditions1" class="form-label">Input offer conditions:</label>
+                        <input type="text" class="form-control" id="offerConditions1" field="*{offerConditions}"
+                               name="offerConditions" th:value="${updateApplication.offerConditions}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nonStandardEmail1" class="form-label">Non-standard Quals chaser
+                            email:</label>
+                        <input type="text" class="form-control" id="nonStandardEmail1"
+                               field="*{nonStandardEmail}"
+                               name="nonStandardEmail" th:value="${updateApplication.nonStandardEmail}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmationComments1" class="form-label">Input confirmation
+                            comments:</label>
+                        <input type="text" class="form-control" id="confirmationComments1"
+                               field="*{confirmationComments}" name="confirmationComments"
+                               th:value="${updateApplication.confirmationComments}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="offerEmailSent1" class="form-label">Offer Email Sent?</label>
+                        <input type="text" class="form-control" id="offerEmailSent1" field="*{offerEmailSent}"
+                               name="offerEmailSent" th:value="${updateApplication.offerEmailSent}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="issueDate1" class="form-label">Input issue date:</label>
+                        <input type="text" class="form-control" id="issueDate1" field="*{issueDate}"
+                               name="issueDate" th:value="${updateApplication.issueDate}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dbsCertNumber1" class="form-label">Input DBS certificate number:</label>
+                        <input type="text" class="form-control" id="dbsCertNumber1" field="*{dbsCertNumber}"
+                               name="dbsCertNumber" th:value="${updateApplication.dbsCertNumber}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="faStatus1" class="form-label">Input FA status (In progress/Complete
+                            etc?):</label>
+                        <input type="text" class="form-control" id="faStatus1" field="*{faStatus}"
+                               name="faStatus" th:value="${updateApplication.faStatus}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateService1" class="form-label">Update Service:</label>
+                        <input type="text" class="form-control" id="updateService1" field="*{updateService}"
+                               name="updateService" th:value="${updateApplication.updateService}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="essentialToDos1" class="form-label">Essential to Dos:</label>
+                        <input type="text" class="form-control" id="essentialToDos1" field="*{essentialToDos}"
+                               name="essentialToDos" th:value="${updateApplication.essentialToDos}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="enrolmentCriteriaComments1" class="form-label">Input enrolment criteria
+                            comments:</label>
+                        <input type="text" class="form-control" id="enrolmentCriteriaComments1"
+                               field="*{enrolmentCriteriaComments}" name="enrolmentCriteriaComments"
+                               th:value="${updateApplication.enrolmentCriteriaComments}">
+                    </div>
+                </div>
+                <a href="/applications" class="btn btn-secondary submit-button">Back</a>
+                <button type="submit" class="btn btn-danger submit-button">Update</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

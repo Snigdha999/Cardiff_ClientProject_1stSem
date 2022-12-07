@@ -22,14 +22,17 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
     }
 
     /* Adding all the data in the Application table
-     * @return List
+     * @param StudentApplication
      */
     @Override
     public void add(StudentApplication studentApplication) {
         this.studentApplicationRepository.save(studentApplication);
     }
 
-
+    /* Getting data from the application table by id
+     * @param id
+     * @return StudentApplication
+     */
     @Override
     public StudentApplication getStudentApplicationById(int id){
         Optional<StudentApplication> optional = studentApplicationRepository.findById(id);
@@ -44,12 +47,13 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
 
     }
 
+    /* Delete the data in the Application table by id
+     * @param id
+     */
     @Override
     public void deleteStudentApplicationById(int id) {
         this.studentApplicationRepository.deleteById(id);
     }
-
-
     @Override
     public int getAmountApplications(){
         List<StudentApplication> applications = studentApplicationRepository.findAll();
@@ -70,6 +74,4 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
         }
         return counter;
     }
-
-
 }

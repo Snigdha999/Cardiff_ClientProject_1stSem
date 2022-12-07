@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,5 +41,17 @@ public class StudentApplicationController {
         return "redirect:/applications";
     }
 
+    @GetMapping("/getStudentApplication/{id}")
+    public String getStudentApplication(@PathVariable (value = "id") int id, Model model){
+        StudentApplication application = studentApplicationService.getStudentApplicationById(id);
+        model.addAttribute("applicationStatusList", ApplicationStatus.values());
+        model.addAttribute("updateApplication", application);
+        return "updateApplication";
+    }
 
+    @PostMapping("/updateStudentApplication/{id}")
+    public String updateStudentApplication(@PathVariable (value = "id") int id, @ModelAttribute("newApplication") StudentApplication studentApplication){
+        studentApplicationService.add(studentApplication);
+        return "redirect:/applications";
+    }
 }
