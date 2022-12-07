@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="template :: header"></div>
+    <link rel="stylesheet" href="../updateApplicationStatus.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+<!-- Navigation bar -->
+<nav th:replace="template :: navbar('applications')"></nav>
+<!-- Main page -->
+<main>
+    <!-- New Modal -->
+    <div class="card w-75">
+        <div class="card-header">
+            Edit Application Status
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Change status here:</h5>
+            <form th:action="@{/updateApplicationStatus/{id}(id=${updateApplicationStatus.id})}" th:object="${newApplication}" method="post" class="form">
+               <div class="mb-3">
+                        <label for="statusCode1" class="form-label">Input application status code:</label>
+                        <input type="text" class="form-control" id="statusCode1" field="*{statusCode}"
+                               name="statusCode" th:value="${updateApplication.statusCode}">
+                </div>
+                <a href="/applications" class="btn btn-secondary submit-button">Back</a>
+                <button type="submit" class="btn btn-danger submit-button">Update</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>
