@@ -27,4 +27,9 @@ public interface StatisticsService {
      * @param id
      */
     public void deleteStatisticsById(int id);
+
+    /* query the data in the Statistics table by year
+     *
+     */
+    List<Statistics> findAllByStudyYear();
 }
