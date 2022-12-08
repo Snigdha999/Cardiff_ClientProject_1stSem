@@ -18,7 +18,6 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/").permitAll()
 				.requestMatchers("/css/**").permitAll() // Allow CSS files even when not logged in
 				.requestMatchers("/images/**").permitAll() // Allow static images even when not logged in
 				.requestMatchers("/javascript/**").permitAll() // Allow front end JS files even when not logged in
