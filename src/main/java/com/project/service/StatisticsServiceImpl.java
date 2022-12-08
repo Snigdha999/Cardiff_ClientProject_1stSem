@@ -6,6 +6,7 @@ import com.project.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +55,21 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public void deleteStatisticsById(int id) {
         this.statisticsRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Statistics> findAllByStudyYear() {
+        //Get Calendar Object
+        Calendar cal = Calendar.getInstance();
+        //Get the current year based on the calendar object.
+        int year = cal.get(Calendar.YEAR)%100;
+        //Get next year
+        int nextYear =(year+1)%100;
+        //Spliced into the form of the string "22/23".
+        String keyword =Integer.toString(year)+"/"+Integer.toString(nextYear);
+        System.out.println(keyword);
+
+        return this.statisticsRepository.findAllByStudyYear(keyword);
     }
 
 }
