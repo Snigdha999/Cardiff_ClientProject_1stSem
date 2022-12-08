@@ -1,8 +1,6 @@
 package com.project;
 
-import com.project.repository.StatisticsRepository;
 import com.project.repository.StudentApplicationRepository;
-import com.project.service.StatisticsService;
 import com.project.service.StudentApplicationService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

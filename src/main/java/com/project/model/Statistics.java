@@ -13,6 +13,13 @@ public class Statistics {
     private int places;
     private int offers;
 
+    public Statistics(int id, String studyYear, int places, int offers) {
+        this.id = id;
+        this.studyYear = studyYear;
+        this.places = places;
+        this.offers = offers;
+    }
+
     public int getId() {
         return id;
     }
