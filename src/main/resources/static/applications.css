@@ -14,18 +14,6 @@
   margin: 0;
 }
 
-button{
-  border-radius: 4px;
-  padding: 6px 12px 6px 12px;
-  border: 1px solid #212529;
-}
-button:hover{
-  background-color:grey;
-}
-.change-status-btn{
-  width:128px;
-}
-
 .edit-status {
   white-space:nowrap;
 }

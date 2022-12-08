@@ -1,8 +1,10 @@
 package com.project.controller;
 
+import com.project.model.ApplicationExcelExporter;
 import com.project.model.ApplicationStatus;
 import com.project.model.StudentApplication;
 import com.project.service.StudentApplicationService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,5 +62,17 @@ public class StudentApplicationController {
     public String updateStudentApplication(@PathVariable (value = "id") int id, @ModelAttribute("newApplication") StudentApplication studentApplication){
         studentApplicationService.add(studentApplication);
         return "redirect:/applications";
+    }
+
+    @GetMapping("/exportData")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        String headerKey = "Content-Disposition";
+        DateFormat dateFormatter = new SimpleDateFormat("");
+        String headerValue = "attachment; filename=applications.xlsx";
+        response.setHeader(headerKey, headerValue);
+        List<StudentApplication> applications = studentApplicationService.getAll(null);
+        ApplicationExcelExporter excelExporter = new ApplicationExcelExporter(applications);
+        excelExporter.export(response);
     }
 }

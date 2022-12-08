@@ -15,7 +15,7 @@
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">
                 Add application
             </button>
-            <button type="button" class="btn btn-dark">Export data</button>
+            <a th:href="@{/exportData}" class="btn btn-dark">Export data</a>
         </div>
         <form th:action="@{/applications}" class="row g-3" role="search">
             <div class="col-auto">
