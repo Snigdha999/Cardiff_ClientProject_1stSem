@@ -1,0 +1,67 @@
+.container-fluid {
+ padding: 10px 25px;
+}
+
+main
+{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.inputError
+{
+    margin-top: 5px;
+    color: darkred;
+    display: none;
+}
+
+.noClick
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.buttonRow
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.accountInfo
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sensitive
+{
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.accountInfo > label
+{
+    font-weight: bold;
+}
+
+.accountInfo > a
+{
+    color: red;
+}
+
+.btn > img
+{
+    width: 16px;
+}
+
+.accountInfo > a:hover
+{
+    color: rgb(255, 65, 65);
+}
+
+.
