@@ -1,24 +1,31 @@
 package com.project;
 
-import com.project.repository.StudentApplicationRepository;
+import com.project.model.StudentApplication;
 import com.project.service.StudentApplicationService;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(MockitoJUnitRunner.class)
+import java.util.List;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class StudentApplicationServiceTest {
 
-    @Mock
-    private StudentApplicationRepository studentApplicationRepository;
-
-    @InjectMocks
+    @Autowired
     private StudentApplicationService studentApplicationService;
 
     @Test
     void contextLoads() {
+    }
+
+    @Test
+    public void whenGetAllStudentApplication_thenReturnAllStudentApplication() {
+        List<StudentApplication> studentApplication = studentApplicationService.getAll("09456712");
+        Assertions.assertThat(studentApplication.size()).isGreaterThan(0);
     }
 
 
