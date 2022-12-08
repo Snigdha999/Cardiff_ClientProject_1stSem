@@ -13,8 +13,8 @@ public class Accounts {
     private String username;
     @Column(name = "password")
     private String password;
-    @Column(name = "isSuperUser")
-    private boolean isSuperUser;
+    @Column(name = "account_type")
+    private String accountType;
 
     public int getId() {
         return id;
@@ -40,12 +40,12 @@ public class Accounts {
         this.password = password;
     }
 
-    public Boolean getIsSuperUser() {
-        return isSuperUser;
+    public String getAccountType() {
+        return accountType;
     }
 
-    public void setIsSuperUser(Boolean isSuperUser) {
-        this.isSuperUser = isSuperUser;
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
 }

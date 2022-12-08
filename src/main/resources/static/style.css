@@ -1,6 +1,8 @@
-.container-fluid {
- padding: 10px 25px;
+#logo
+{
+    margin-right: 15px;
 }
+
 
 main
 {
@@ -39,5 +41,3 @@ main
 {
     color: rgb(255, 65, 65);
 }
-
-.
