@@ -30,4 +30,10 @@ public class SettingsController {
         accountsService.add(accounts);
         return "redirect:/accounts";
     }
+
+    @GetMapping("/deleteAccount/{id}")
+    public String deleteAccount(@PathVariable (value = "id") int id){
+        this.accountsService.deleteAccountById(id);
+        return "redirect:/accounts";
+    }
 }

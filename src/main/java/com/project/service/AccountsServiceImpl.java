@@ -27,4 +27,9 @@ public class AccountsServiceImpl implements AccountsService {
     public void add(Accounts accounts) {
         this.accountsRepository.save(accounts);
     }
+
+    @Override
+    public void deleteAccountById(int id) {
+        this.accountsRepository.deleteById(id);
+    }
 }

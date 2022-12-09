@@ -11,6 +11,8 @@ public interface AccountsService {
      */
     public List<Accounts> getAll();
 
+    public void deleteAccountById(int id); // Delete an account by their ID
+
     /* Adding the data
      * @param Accounts
      */
