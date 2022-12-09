@@ -19,9 +19,9 @@
         The Current Statistics ->>
     </h2>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card" style="width: 18rem;">
+    <div class="row boximages">
+        <div class="col-sm-4 cardbox">
+            <div class="card" >
                 <img th:src="@{applicationcard.png}" width="100px" alt="card1">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Applications</h5>
@@ -31,8 +31,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm-4 cardbox">
+            <div class="card">
                 <img th:src="@{offercard.png}" width="100px" alt="card2">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Offers</h5>
@@ -42,13 +42,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm-4 cardbox">
+            <div class="card">
                 <img th:src="@{placecard.png}" width="100px" alt="card3">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Places</h5>
                     <p class="card-text">The number of the students' funded places we have are:</p>
                     <p class="card-text"th:text="${amountOfPlace}"></p>
+                    <!--Current year places                    -->
                     <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
             </div>
@@ -58,6 +59,63 @@
     <h2>
         The Bar Chart ->>
     </h2>
+    <div class="container">
+        <div id="barchartContainer" style="width: 100% ;height:600px;margin:0 auto"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script th:inline="javascript">
+        $(function (){
+
+            Highcharts.chart('barchartContainer',{
+                chart:{
+                    type:'column'
+                },
+                title:{
+                    text: 'Statistics from previous years',
+                },
+                xAxis:{
+                    categories:[[${dataNames}]],
+                    crosshair:true
+                },
+                yAxix:{
+                    min:0,
+                    max:150,
+                    title:{
+                        text:'Statistics rating [in %]'
+                    }
+                },
+                tooltip:{
+                    headerFormat:'<span style="font-size:16px font-weight:500">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}:</td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} K</b></td></tr>',
+                    footerFormat:'</table>',
+                    shared: true,
+                    useHTML:true
+                },
+                plotOptions:{
+                    column:{
+                        pointPadding:0.2,
+                        borderWidth:0
+                    }
+                },
+                series: [
+                    {
+                        name: "funded places",
+                        data:[[${dataPlaces}]],
+                        color: "#dc3545",
+                    },
+                    {
+                        name: "offer taken",
+                        data:[[${dataOffers}]],
+                        color: "#C0C0C0"
+                    }
+                ]
+            });
+        });
+    </script>
 
 
     <h2>
@@ -71,5 +129,6 @@
         crossorigin="anonymous">
 
 </script>
+
 </body>
 </html>

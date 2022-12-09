@@ -22,6 +22,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.apache.poi:poi:4.0.0'
 	implementation 'org.apache.poi:poi-ooxml:4.0.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security' // For authentication to work
 	implementation 'org.springframework.security:spring-security-test' // Also for authentication to work
 }

@@ -1,7 +1,5 @@
 package com.project.controller;
 
-import com.project.model.Accounts;
-import com.project.model.StudentApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +23,4 @@ public class SettingsController {
         return "accounts";
     }
 
-    @PostMapping("/addAccount")
-    public String addAccount(@ModelAttribute("newAccount") Accounts accounts) {
-        accountsService.add(accounts);
-        return "redirect:/accounts";
-    }
 }
