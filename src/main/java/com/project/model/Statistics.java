@@ -12,6 +12,7 @@ public class Statistics {
     private String studyYear;
     private int places;
     private int offers;
+
     public int getId() {
         return id;
     }

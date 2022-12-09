@@ -13,7 +13,6 @@ public class Accounts {
     private String username;
     @Column(name = "password")
     private String password;
-
     @Column(name = "account_type")
     private String accountType;
 
@@ -48,4 +47,5 @@ public class Accounts {
     public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
+
 }
