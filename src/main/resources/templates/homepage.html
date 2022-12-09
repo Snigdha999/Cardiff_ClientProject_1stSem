@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-4 cardbox">
             <div class="card">
                 <img th:src="@{offercard.png}" width="100px" alt="card2">
@@ -42,13 +43,15 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-4 cardbox">
             <div class="card">
                 <img th:src="@{placecard.png}" width="100px" alt="card3">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Places</h5>
                     <p class="card-text">The number of the students' funded places we have are:</p>
-                    <p class="card-text"th:text="${amountOfPlace}"></p>
+                    <p class="card-text" th:if="${amountOfPlace} != 0" th:text="${amountOfPlace}"></p>
+                    <p class="card-text" th:if="${amountOfPlace} == 0" th:text="No update"></p>
                     <!--Current year places                    -->
                     <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
