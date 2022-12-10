@@ -25,6 +25,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security' // For authentication to work
 	implementation 'org.springframework.security:spring-security-test' // Also for authentication to work
+	implementation 'org.webjars:bootstrap-datepicker:1.9.0'
 }
 
 tasks.named('test') {
