@@ -1,6 +1,8 @@
 package com.project.controller;
 
+import com.project.model.ApplicationStatus;
 import com.project.model.Statistics;
+import com.project.model.StudentApplication;
 import com.project.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,4 +34,18 @@ public class StatisticsController {
         this.statisticsService.deleteStatisticsById(id);
         return "redirect:/statistics";
     }
+
+    @GetMapping("/getStatistics/{id}")
+    public String getStatistics(@PathVariable (value = "id") int id, Model model){
+        Statistics statistics = statisticsService.getStatisticsById(id);
+        model.addAttribute("updateStatistics", statistics);
+        return "updateStatistics";
+    }
+
+    @PostMapping("/updateStatistics/{id}")
+    public String updateStudentApplication(@PathVariable (value = "id") int id, @ModelAttribute("newStatistics") Statistics statistics){
+        statisticsService.add(statistics);
+        return "redirect:/statistics";
+    }
+
 }

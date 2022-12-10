@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <div th:replace="template :: header"></div>
+    <link rel="stylesheet" href="../updateStatistics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/validation.css">
+</head>
+
+<body>
+<!-- Navigation bar -->
+<nav th:replace="template :: navbar('statistics')"></nav>
+<!-- Main content -->
+<main>
+    <!-- New Modal -->
+
+    <div class="card w-75 card-hv">
+        <div class="card-header">
+            Edit Statistics
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Update statistics fields here:</h5>
+
+            <form th:action="@{/updateStatistics/{id}(id=${updateStatistics.id})}" th:object="${newStatistics}" method="post" class="form application-needs-validation">
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Input study year:</label>
+                            <input type="text" class="form-control" id="year" aria-describedby="year"
+                                   placeholder="Example: 22/23" field="*{studyYear}" name="studyYear" autocomplete="off" th:value="${updateStatistics.studyYear}" required>
+                            <div class="invalid-feedback">
+                                Please input valid study year.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="places" class="form-label">Input number of funded places:</label>
+                            <input type="text" class="form-control" id="places" field="*{places}" name="places" autocomplete="off" th:value="${updateStatistics.places}" required>
+                            <div class="invalid-feedback">
+                                This field is required.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="offers" class="form-label">Input number of offers made:</label>
+                            <input type="text" class="form-control" id="offers" field="*{offers}" name="offers" autocomplete="off" th:value="${updateStatistics.offers}" required>
+                            <div class="invalid-feedback">
+                                This field is required.
+                            </div>
+                        </div>
+                <a href="/statistics" class="btn btn-secondary submit-button">Back</a>
+                <button type="submit" class="btn btn-danger submit-button">Update</button>
+                    </form>
+                </div>
+
+    </div>
+</main>
+<script src="../Javascript/formValidation.js"></script>
+</body>
+</html>
