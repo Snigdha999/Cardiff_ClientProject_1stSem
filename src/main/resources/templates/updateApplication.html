@@ -27,7 +27,7 @@
                 <div>
                     <div class="mb-3">
                         <label for="ucasCode" class="form-label">Input UCAS Cardiff course:</label>
-                        <input type="text" class="form-control" id="ucasCode" field="${ucasCode}"
+                        <input type="text" autocomplete="off" class="form-control" id="ucasCode" field="${ucasCode}"
                                name="ucasCode" th:value="${updateApplication.ucasCode}" required>
                         <div class="invalid-feedback">
                             This field is required.
@@ -35,7 +35,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="courseCode" class="form-label">Input Cardiff course code:</label>
-                        <input type="text" class="form-control" id="courseCode" field="*{courseCode}"
+                        <input type="text" autocomplete="off" class="form-control" id="courseCode" field="*{courseCode}"
                                name="courseCode" th:value="${updateApplication.courseCode}" required>
                         <div class="invalid-feedback">
                             This field is required.
@@ -49,7 +49,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="entryYear" class="form-label">Input entry year:</label>
-                        <input type="text" class="form-control" id="entryYear" field="*{entryYear}"
+                        <input type="text" autocomplete="off" class="form-control" id="entryYear" field="*{entryYear}"
                                name="entryYear" th:value="${updateApplication.entryYear}" placeholder="Example: 22/23">
                         <div class="invalid-feedback">
                             Please input valid entry year.
@@ -57,7 +57,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="studentNumber" class="form-label">Input student number:</label>
-                        <input type="text" class="form-control" id="studentNumber" field="*{studentNumber}"
+                        <input type="text" autocomplete="off" class="form-control" id="studentNumber" field="*{studentNumber}"
                                name="studentNumber" th:value="${updateApplication.studentNumber}" required>
                         <div class="invalid-feedback">
                             This field is required.
@@ -65,7 +65,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="personalId" class="form-label">Input personal Id:</label>
-                        <input type="text" class="form-control" id="personalId" field="*{personalId}"
+                        <input type="text" autocomplete="off" class="form-control" id="personalId" field="*{personalId}"
                                name="personalId" th:value="${updateApplication.personalId}" required>
                         <div class="invalid-feedback">
                             This field is required.
@@ -73,22 +73,22 @@
                     </div>
                     <div class="mb-3">
                         <label for="statusCode" class="form-label">Input application status code:</label>
-                        <input type="text" class="form-control" id="statusCode" field="*{statusCode}"
+                        <input type="text" autocomplete="off" class="form-control" id="statusCode" field="*{statusCode}"
                                name="statusCode" th:value="${updateApplication.statusCode}">
                     </div>
                     <div class="mb-3">
                         <label for="latestDecision" class="form-label">Input latest decision Code (CAP):</label>
-                        <input type="text" class="form-control" id="latestDecision" field="*{latestDecision}"
+                        <input type="text" autocomplete="off" class="form-control" id="latestDecision" field="*{latestDecision}"
                                name="latestDecision" th:value="${updateApplication.latestDecision}">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Input first forename:</label>
-                        <input type="text" class="form-control" id="name" field="*{name}" name="name"
+                        <input type="text" autocomplete="off" class="form-control" id="name" field="*{name}" name="name"
                                th:value="${updateApplication.name}">
                     </div>
                     <div class="mb-3">
                         <label for="surname" class="form-label">Input surname:</label>
-                        <input type="text" class="form-control" id="surname" field="*{surname}" name="surname"
+                        <input type="text" autocomplete="off" class="form-control" id="surname" field="*{surname}" name="surname"
                                th:value="${updateApplication.surname}">
                     </div>
                     <div class="mb-3">
@@ -119,7 +119,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="feeStatus" class="form-label">Input fee status:</label>
-                        <input type="text" class="form-control" id="feeStatus" field="*{feeStatus}"
+                        <input type="text" autocomplete="off" class="form-control" id="feeStatus" field="*{feeStatus}"
                                name="feeStatus" th:value="${updateApplication.feeStatus}">
                     </div>
                     <div class="mb-3">
@@ -154,12 +154,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="country" class="form-label">Input country of domicile:</label>
-                        <input type="text" class="form-control" id="country" field="*{country}"
+                        <input type="text" autocomplete="off" class="form-control" id="country" field="*{country}"
                                th:value="${updateApplication.country}" name="country">
                     </div>
                     <div class="mb-3">
                         <label for="nationality" class="form-label">Input nationality:</label>
-                        <input type="text" class="form-control" id="nationality" field="*{nationality}"
+                        <input type="text" autocomplete="off" class="form-control" id="nationality" field="*{nationality}"
                                name="nationality" th:value="${updateApplication.nationality}">
                     </div>
                     <div class="mb-3">
@@ -202,26 +202,26 @@
                     <div class="mb-3">
                         <label for="applicationStatusComments" class="form-label">Input application status
                             comments:</label>
-                        <input type="text" class="form-control" id="applicationStatusComments"
+                        <input type="text" autocomplete="off" class="form-control" id="applicationStatusComments"
                                field="*{applicationStatusComments}" name="applicationStatusComments"
                                th:value="${updateApplication.applicationStatusComments}">
                     </div>
                     <div class="mb-3">
                         <label for="feeStatusComments" class="form-label">Input fee status comments:</label>
-                        <input type="text" class="form-control" id="feeStatusComments"
+                        <input type="text" autocomplete="off" class="form-control" id="feeStatusComments"
                                field="*{feeStatusComments}"
                                name="feeStatusComments" th:value="${updateApplication.feeStatusComments}">
                     </div>
                     <div class="mb-3">
                         <label for="highestQualification" class="form-label">Input highest level qualification
                             (Pending/Awarded):</label>
-                        <input type="text" class="form-control" id="highestQualification"
+                        <input type="text" autocomplete="off" class="form-control" id="highestQualification"
                                field="*{highestQualification}" name="highestQualification"
                                th:value="${updateApplication.highestQualification}">
                     </div>
                     <div class="mb-3">
                         <label for="gradesAchieved" class="form-label">Input grades achieved:</label>
-                        <input type="text" class="form-control" id="gradesAchieved" field="*{gradesAchieved}"
+                        <input type="text" autocomplete="off" class="form-control" id="gradesAchieved" field="*{gradesAchieved}"
                                name="gradesAchieved" th:value="${updateApplication.gradesAchieved}">
                     </div>
                     <div class="mb-3">
@@ -245,7 +245,7 @@
                         <label for="personalStatementScore" class="form-label">Input total personal statement
                             score
                             (if applicable):</label>
-                        <input type="text" class="form-control" id="personalStatementScore"
+                        <input type="text" autocomplete="off" class="form-control" id="personalStatementScore"
                                field="*{personalStatementScore}" name="personalStatementScore"
                                th:value="${updateApplication.personalStatementScore}">
                     </div>
@@ -272,13 +272,13 @@
                     <div class="mb-3">
                         <label for="interviewComments" class="form-label">Input interview invite
                             comments:</label>
-                        <input type="text" class="form-control" id="interviewComments"
+                        <input type="text" autocomplete="off" class="form-control" id="interviewComments"
                                field="*{interviewComments}"
                                name="interviewComments" th:value="${updateApplication.interviewComments}">
                     </div>
                     <div class="mb-3">
                         <label for="interviewScore" class="form-label">Input total interview score:</label>
-                        <input type="text" class="form-control" id="interviewScore" field="*{interviewScore}"
+                        <input type="text" autocomplete="off" class="form-control" id="interviewScore" field="*{interviewScore}"
                                name="interviewScore" th:value="${updateApplication.interviewScore}">
                     </div>
                     <div class="mb-3">
@@ -298,20 +298,20 @@
                     </div>
                     <div class="mb-3">
                         <label for="offerConditions" class="form-label">Input offer conditions:</label>
-                        <input type="text" class="form-control" id="offerConditions" field="*{offerConditions}"
+                        <input type="text" autocomplete="off" class="form-control" id="offerConditions" field="*{offerConditions}"
                                name="offerConditions" th:value="${updateApplication.offerConditions}">
                     </div>
                     <div class="mb-3">
                         <label for="nonStandardEmail" class="form-label">Non-standard Quals chaser
                             email:</label>
-                        <input type="text" class="form-control" id="nonStandardEmail"
+                        <input type="text" autocomplete="off" class="form-control" id="nonStandardEmail"
                                field="*{nonStandardEmail}"
                                name="nonStandardEmail" th:value="${updateApplication.nonStandardEmail}">
                     </div>
                     <div class="mb-3">
                         <label for="confirmationComments" class="form-label">Input confirmation
                             comments:</label>
-                        <input type="text" class="form-control" id="confirmationComments"
+                        <input type="text" autocomplete="off" class="form-control" id="confirmationComments"
                                field="*{confirmationComments}" name="confirmationComments"
                                th:value="${updateApplication.confirmationComments}">
                     </div>
@@ -337,29 +337,29 @@
                     </div>
                     <div class="mb-3">
                         <label for="dbsCertNumber" class="form-label">Input DBS certificate number:</label>
-                        <input type="text" class="form-control" id="dbsCertNumber" field="*{dbsCertNumber}"
+                        <input type="text" autocomplete="off" class="form-control" id="dbsCertNumber" field="*{dbsCertNumber}"
                                name="dbsCertNumber" th:value="${updateApplication.dbsCertNumber}">
                     </div>
                     <div class="mb-3">
                         <label for="faStatus" class="form-label">Input FA status (In progress/Complete
                             etc?):</label>
-                        <input type="text" class="form-control" id="faStatus" field="*{faStatus}"
+                        <input type="text" autocomplete="off" class="form-control" id="faStatus" field="*{faStatus}"
                                name="faStatus" th:value="${updateApplication.faStatus}">
                     </div>
                     <div class="mb-3">
                         <label for="updateService" class="form-label">Update Service:</label>
-                        <input type="text" class="form-control" id="updateService" field="*{updateService}"
+                        <input type="text" autocomplete="off" class="form-control" id="updateService" field="*{updateService}"
                                name="updateService" th:value="${updateApplication.updateService}">
                     </div>
                     <div class="mb-3">
                         <label for="essentialToDos" class="form-label">Essential to Dos:</label>
-                        <input type="text" class="form-control" id="essentialToDos" field="*{essentialToDos}"
+                        <input type="text" autocomplete="off" class="form-control" id="essentialToDos" field="*{essentialToDos}"
                                name="essentialToDos" th:value="${updateApplication.essentialToDos}">
                     </div>
                     <div class="mb-3">
                         <label for="enrolmentCriteriaComments" class="form-label">Input enrolment criteria
                             comments:</label>
-                        <input type="text" class="form-control" id="enrolmentCriteriaComments"
+                        <input type="text" autocomplete="off" class="form-control" id="enrolmentCriteriaComments"
                                field="*{enrolmentCriteriaComments}" name="enrolmentCriteriaComments"
                                th:value="${updateApplication.enrolmentCriteriaComments}">
                     </div>
