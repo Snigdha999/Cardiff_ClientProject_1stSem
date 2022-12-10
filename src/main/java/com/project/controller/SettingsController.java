@@ -25,9 +25,10 @@ public class SettingsController {
         return "accounts";
     }
 
-    @GetMapping("/accounts/edit/{id}")
+    @GetMapping("/editAccount/{id}")
     public String editAccount(@PathVariable (value = "id") int id, Model model){
         Accounts accounts = accountsService.getAccountById(id);
+        model.addAttribute("updateAccount", accounts);
         return "editAccount";
     }
 
@@ -43,7 +44,7 @@ public class SettingsController {
         return "redirect:/accounts";
     }
 
-    @PostMapping("/accounts/edit/{id}")
+    @PostMapping("/editAccount/{id}")
     public String editAccounts(@PathVariable (value = "id") int id, @ModelAttribute("newAccount") Accounts accounts){
         accountsService.add(accounts);
         return "redirect:/accounts";
