@@ -32,4 +32,5 @@ public interface StatisticsService {
      *
      */
     List<Statistics> findAllByStudyYear();
+
 }

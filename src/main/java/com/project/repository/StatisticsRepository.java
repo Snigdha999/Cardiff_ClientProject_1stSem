@@ -11,4 +11,7 @@ import java.util.List;
 public interface StatisticsRepository extends JpaRepository<Statistics, Integer> {
     @Query(value = "SELECT * FROM statistics  WHERE statistics.study_year =?1 ",nativeQuery = true)
     public List<Statistics> findAllByStudyYear(String keyword);
+
+    @Query(value = "SELECT * FROM statistics  order by statistics.study_year desc",nativeQuery = true)
+    public List<Statistics> findAllByStudyYearOrderByStudyYearDesc();
 }

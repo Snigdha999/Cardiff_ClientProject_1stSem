@@ -38,9 +38,11 @@ public class HomeController {
             dataPlaces.add(statistics.getPlaces());
         }
 
-        model.addAttribute("dataNames",dataNames);
-        model.addAttribute("dataOffers",dataOffers);
-        model.addAttribute("dataPlaces",dataPlaces);
+        if(dataNames.size() != 0 && dataOffers.size() != 0 && dataPlaces.size() != 0) {
+            model.addAttribute("dataNames",dataNames);
+            model.addAttribute("dataOffers",dataOffers);
+            model.addAttribute("dataPlaces",dataPlaces);
+        }
         model.addAttribute("amountOfPlace", statisticsService.findAllByStudyYear().get(0).getPlaces());
         model.addAttribute("amountOfApplications", applicationService.getAmountApplications());
         model.addAttribute("amountOfOffers", applicationService.getAmountOfOffers());
