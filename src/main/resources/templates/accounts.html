@@ -28,49 +28,52 @@
             <td th:text="${accountsItem.username}"></td>
             <td class="sensitive" th:text="${accountsItem.password}"></td>
             <td  th:text="${accountsItem.accountType}"></td>
-            <td><button type="button" class="btn btn-outline-dark"><img th:src="@{images/icons/delete.png}" alt="Delete icon" /></button> <button type="button" class="btn btn-outline-dark"><img th:src="@{images/icons/edit.png}" alt="Edit icon" /></button></td>
+            <td>
+                <a th:href="@{/accounts/edit/{id}(id=${accountsItem.id})}" class="btn btn-outline-dark me-1"><i class="fa-solid fa-pen"></i></a>
+                <a th:href="@{/deleteAccount/{id}(id=${accountsItem.id})}" class="btn btn-outline-dark me-1"><i class="fa-regular fa-trash-can"></i></a>
+            </td>
           </tr>
         </tbody>
       </table>
       <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addAccountsModel" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="modalLabel">Add Account</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form th:action="@{/addAccount}" th:object="${accountsItem}" method="post">
-                <div class="mb-3">
-                  <label for="username" class="form-label">Username:</label>
-                  <input type="text" required class="form-control" id="username" aria-describedby="username" placeholder="ExampleUser" field="*{username}" name="username">
-                  <label class="inputError" id="usernameRequired">⚠ Username required</label>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLabel">Add Account</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password:</label>
-                  <input type="password" required class="form-control" id="password" field="*{password}" name="password">
+                <div class="modal-body">
+                    <form th:action="@{/addAccount}" th:object="${accountsItem}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username:</label>
+                            <input type="text" required class="form-control" id="username" aria-describedby="username" placeholder="ExampleUser" field="*{username}" name="username">
+                            <label class="inputError" id="usernameRequired">⚠ Username required</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" required class="form-control" id="password" field="*{password}" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="repeatPassword" class="form-label">Repeat password:</label>
+                            <input type="password" required class="form-control" id="repeatPassword" name="repeatPassword">
+                            <label class="inputError" id="passwordsDontMatch">⚠ Passwords don't match</label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Account Type</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="accountType" id="accountType2" field="*{accountType}" value="User" checked>
+                                <label class="form-check-label" for="accountType2"> User (Can view data) </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="accountType" id="accountType1" field="*{accountType}" value="Admin">
+                                <label class="form-check-label" for="accountType1"> Admin (Can edit, delete and view data) </label>
+                            </div>
+                        </div>
+                        <button type="submit" id="createAccountButton" class="btn btn-danger noClick">Create account</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                  <label for="repeatPassword" class="form-label">Repeat password:</label>
-                  <input type="password" required class="form-control" id="repeatPassword" name="repeatPassword">
-                  <label class="inputError" id="passwordsDontMatch">⚠ Passwords don't match</label>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Account Type</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType2" field="*{accountType}" value="User" checked>
-                    <label class="form-check-label" for="accountType2"> User (Can view data) </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="accountType" id="accountType1" field="*{accountType}" value="Admin">
-                    <label class="form-check-label" for="accountType1"> Admin (Can edit, delete and view data) </label>
-                  </div>
-                </div>
-                <button type="submit" id="createAccountButton" class="btn btn-danger noClick">Create account</button>
-              </form>
             </div>
           </div>
-        </div>
       </div>
     </main>
     <script th:src="@{Javascript/accountValidation.js}"></script>
