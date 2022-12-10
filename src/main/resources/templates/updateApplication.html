@@ -17,7 +17,7 @@
 <!-- Main page -->
 <main>
     <!-- New Modal -->
-    <div class="card w-75">
+    <div class="card w-75 card-hv">
         <div class="card-header">
             Edit Application
         </div>
@@ -45,7 +45,7 @@
                         <label for="firstCreated" class="form-label">Input when record was first
                             created:</label>
                         <input type="text" autocomplete="off" data-provide="datepicker" id="firstCreated" class="form-control datepicker"
-                               field="*{firstCreated}" th:value="${updateApplication.firstCreated}" name="firstCreated" data-date-end-date="0d" placeholder="dd.mm.yyyy">
+                               field="*{firstCreated}" th:value="${updateApplication.firstCreated}" name="firstCreated" data-date-end-date="0d" placeholder="DD.MM.YYYY">
                     </div>
                     <div class="mb-3">
                         <label for="entryYear" class="form-label">Input entry year:</label>
@@ -58,7 +58,7 @@
                     <div class="mb-3">
                         <label for="studentNumber" class="form-label">Input student number:</label>
                         <input type="text" autocomplete="off" class="form-control" id="studentNumber" field="*{studentNumber}"
-                               name="studentNumber" th:value="${updateApplication.studentNumber}" required>
+                               name="studentNumber" placeholder="Ex: 23098723" th:value="${updateApplication.studentNumber}" required>
                         <div class="invalid-feedback">
                             This field is required.
                         </div>
@@ -94,7 +94,7 @@
                     <div class="mb-3">
                         <label for="dateOfBirth" class="form-label">Input date of birth:</label>
                         <input type="text" autocomplete="off" data-provide="datepicker" id="dateOfBirth" class="form-control datepicker"
-                               field="*{dateOfBirth}" th:value="${updateApplication.dateOfBirth}" name="dateOfBirth" data-date-end-date="0d" placeholder="dd.mm.yyyy">
+                               field="*{dateOfBirth}" th:value="${updateApplication.dateOfBirth}" name="dateOfBirth" data-date-end-date="0d" placeholder="DD.MM.YYYY">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Input gender:</label>
@@ -173,7 +173,7 @@
                     <div class="mb-3">
                         <label for="dateReceived" class="form-label">Date received from ADMIS:</label>
                         <input type="text" autocomplete="off" data-provide="datepicker" id="dateReceived" class="form-control datepicker"
-                               field="*{dateReceived}" th:value="${updateApplication.dateReceived}" name="dateReceived" data-date-end-date="0d" placeholder="dd.mm.yyyy">
+                               field="*{dateReceived}" th:value="${updateApplication.dateReceived}" name="dateReceived" data-date-end-date="0d" placeholder="DD.MM.YYYY">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Contextual flag?</label>
@@ -267,7 +267,7 @@
                     <div class="mb-3">
                         <label for="interviewDate" class="form-label">Input interview date:</label>
                         <input type="text" autocomplete="off" data-provide="datepicker" id="interviewDate" class="form-control datepicker"
-                               field="*{interviewDate}" th:value="${updateApplication.interviewDate}" name="interviewDate" placeholder="dd.mm.yyyy">
+                               field="*{interviewDate}" th:value="${updateApplication.interviewDate}" name="interviewDate" placeholder="DD.MM.YYYY">
                     </div>
                     <div class="mb-3">
                         <label for="interviewComments" class="form-label">Input interview invite
@@ -333,7 +333,7 @@
                     <div class="mb-3">
                         <label for="issueDate" class="form-label">Input issue date:</label>
                         <input type="text" autocomplete="off" data-provide="datepicker" id="issueDate" class="form-control datepicker"
-                               field="*{issueDate}" th:value="${updateApplication.issueDate}" name="issueDate1" data-date-end-date="0d" placeholder="dd.mm.yyyy">
+                               field="*{issueDate}" th:value="${updateApplication.issueDate}" name="issueDate1" data-date-end-date="0d" placeholder="DD.MM.YYYY">
                     </div>
                     <div class="mb-3">
                         <label for="dbsCertNumber" class="form-label">Input DBS certificate number:</label>
