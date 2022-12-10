@@ -5,19 +5,27 @@
     <link rel="stylesheet" th:href="@{homepage.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<style>
+    .card{
+        box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)
+    }
+    .headerFont{
+        font-family: franklin_gothic_fs_medregular,Arial,Helvetica Neue,sans-serif
+    }
+</style>
 <body>
 <!-- Navigation bar -->
 <nav th:replace="template :: navbar('home')"></nav>
 <!-- Main content -->
 <main>
-    <h1 class="text-center" >
-        <p class="text-danger">WELCOME to Recruitment and Admissions Application</p>
+    <h1 class="text-center headerFont fw-bold mb-5">
+        <p class="text-danger">Welcome to RECRUITMENT AND ADMISSIONS APPLICATION</p>
         <small class="text-muted">for the School of Healthcare Sciences</small>
     </h1>
 
-    <h2>
-        The Current Statistics ->>
-    </h2>
+    <h3 class="mb-1" style="font-family: emoji">
+        Current Statistics:
+    </h3>
 
     <div class="row boximages">
         <div class="col-sm-4 cardbox">
@@ -25,8 +33,8 @@
                 <img th:src="@{applicationcard.png}" width="100px" alt="card1">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Applications</h5>
-                    <p class="card-text">The number of the students' applications we have received are:</p>
-                    <p class="card-text" th:text="${amountOfApplications}"></p>
+                    <p class="card-text">Number of the student's applications we have received are:</p>
+                    <p class="card-text fw-bold" th:text="${amountOfApplications}"></p>
                     <a href="/applications" class="btn btn-danger">View Details</a>
                 </div>
             </div>
@@ -37,8 +45,8 @@
                 <img th:src="@{offercard.png}" width="100px" alt="card2">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Offers</h5>
-                    <p class="card-text">The number of the students' offers we have made are:</p>
-                    <p class="card-text" th:text="${amountOfOffers}"></p>
+                    <p class="card-text ">Number of the student's offers we have made are:</p>
+                    <p class="card-text fw-bold" th:text="${amountOfOffers}"></p>
                     <a href="/applications" class="btn btn-danger">View Details</a>
                 </div>
             </div>
@@ -49,8 +57,8 @@
                 <img th:src="@{placecard.png}" width="100px" alt="card3">
                 <div class="card-body">
                     <h5 class="card-title">Amount of Places</h5>
-                    <p class="card-text">The number of the students' funded places we have are:</p>
-                    <p class="card-text" th:text="${amountOfPlace} ?: 'No Update'"></p>
+                    <p class="card-text">Number of the student's funded places we have are:</p>
+                    <p class="card-text fw-bold" th:text="${amountOfPlace} ?: 'No Update'"></p>
                     <!--Current year places                    -->
                     <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
@@ -58,8 +66,8 @@
         </div>
     </div>
 
-    <h2>
-        The Bar Chart ->>
+    <h2 class="mb-1 mt-3" style="font-family: emoji">
+        Bar Chart:
     </h2>
     <div class="container">
         <div id="barchartContainer" style="width: 100% ;height:600px;margin:0 auto"></div>
@@ -118,8 +126,8 @@
         });
     </script>
 
-    <h2>
-        The Calculations ->>
+    <h2 lass="mb-1" style="font-family: emoji">
+        Calculations:
     </h2>
 
 </main>
