@@ -43,7 +43,7 @@ public class SettingsController {
         return "redirect:/accounts";
     }
 
-    @PostMapping("/accounts/{id}/edit")
+    @PostMapping("/accounts/edit/{id}")
     public String editAccounts(@PathVariable (value = "id") int id, @ModelAttribute("newAccount") Accounts accounts){
         accountsService.add(accounts);
         return "redirect:/accounts";

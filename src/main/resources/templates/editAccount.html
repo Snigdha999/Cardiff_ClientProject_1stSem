@@ -18,7 +18,7 @@
             Edit Account
         </div>
         <div class="card-body">
-            <form th:action="@{/accounts/{id}/edit(id=${accountsItem.id})}" th:object="${newAccount}" method="post" class="form">
+            <form th:action="@{/accounts/edit/{id}(id=${accountsItem.id})}" th:object="${newAccount}" method="post" class="form">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username:</label>
                     <input th:value="${newAccount.username}" type="text" required class="form-control" id="username" aria-describedby="username" placeholder="ExampleUser" field="*{username}" name="username">
