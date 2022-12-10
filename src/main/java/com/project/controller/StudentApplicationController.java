@@ -75,4 +75,20 @@ public class StudentApplicationController {
         ApplicationExcelExporter excelExporter = new ApplicationExcelExporter(applications);
         excelExporter.export(response);
     }
+    @GetMapping("/getStudentApplicationStatus/{id}")
+    public String getStudentApplicationStatus(@PathVariable (value = "id") int id, Model model){
+        StudentApplication application = studentApplicationService.getStudentApplicationById(id);
+        model.addAttribute("applicationStatusList", ApplicationStatus.values());
+        model.addAttribute("updateApplication", application);
+        return "updateApplicationStatus";
+    }
+
+    @PostMapping("/updateStudentApplicationStatus/{id}")
+    public String updateStudentApplicationStatus(@PathVariable (value = "id") int id, @ModelAttribute("newApplication") StudentApplication newApplication){
+        StudentApplication application = studentApplicationService.getStudentApplicationById(id);
+        List<ApplicationStatus> status = newApplication.getApplicationStatus();
+        application.setApplicationStatus(status);
+        studentApplicationService.add(application);
+        return "redirect:/applications";
+    }
 }
