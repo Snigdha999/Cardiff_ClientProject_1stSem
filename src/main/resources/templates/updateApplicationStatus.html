@@ -23,7 +23,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">Update application status here:</h5>
-            <form th:action="@{/updateStudentApplication/{id}(id=${updateApplication.id})}" th:object="${newApplication}" method="post" class="form application-needs-validation">
+            <form th:action="@{/updateStudentApplicationStatus/{id}(id=${updateApplication.id})}" th:object="${newApplication}" method="post" class="form application-needs-validation">
                 <div>
 
                    <div class="mb-3">
