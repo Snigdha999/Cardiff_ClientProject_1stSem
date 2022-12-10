@@ -11,16 +11,44 @@
 <nav th:replace="template :: navbar('statistics')"></nav>
 <!-- Main content -->
 <main>
-    <div class="buttonRow">
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">
-            Add data
-        </button>
+    <div class="navbar navbar-expand-md menu-actions">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item me-2">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#addStatisticsModal">
+                            Add data
+                        </button>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Import / Export data
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/importStatistics}">Import Excel <i
+                                    class="fa-solid fa-upload"></i></a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" th:href="@{/exportStatistics}">Export Excel <i
+                                    class="fa-solid fa-download"></i></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="table-responsive the-table">
-        <table class="table table-hover table-fixed table-container">
+        <table class="table table-hover table-container">
             <thead class="table-light">
             <tr>
-                <th scope="col"></th>
+                <th scope="col" class="first-column"></th>
                 <th scope="col">Year</th>
                 <th scope="col">Places</th>
                 <th scope="col">Offers</th>
@@ -28,7 +56,7 @@
             </thead>
             <tbody>
             <tr th:each="statisticsItem : ${listStatistics}">
-                <td>
+                <td class="first-column">
                     <button data-bs-toggle="modal" data-bs-target="#addStatisticsModal" class="btn btn-outline-dark me-1"><i class="fa-solid fa-pen"></i></button>
                     <a th:href="@{/deleteStatistics/{id}(id=${statisticsItem.id})}" class="btn btn-outline-dark me-1"><i class="fa-regular fa-trash-can"></i></a>
                 </td>

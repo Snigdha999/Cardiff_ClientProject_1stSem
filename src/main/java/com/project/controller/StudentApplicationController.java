@@ -64,7 +64,7 @@ public class StudentApplicationController {
         return "redirect:/applications";
     }
 
-    @GetMapping("/exportData")
+    @GetMapping("/exportApplications")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";

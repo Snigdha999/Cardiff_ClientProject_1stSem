@@ -29,7 +29,7 @@ public class ApplicationExcelExporter {
         CellStyle style = workbook.createCellStyle();
         XSSFFont font = workbook.createFont();
         font.setBold(true);
-        font.setFontHeight(16);
+        font.setFontHeight(14);
         style.setFont(font);
 
         Cell cell = row.createCell(0);
@@ -206,7 +206,7 @@ public class ApplicationExcelExporter {
 
         CellStyle style = workbook.createCellStyle();
         XSSFFont font = workbook.createFont();
-        font.setFontHeight(16);
+        font.setFontHeight(14);
         style.setFont(font);
 
         for(StudentApplication application: applications) {
