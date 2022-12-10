@@ -39,20 +39,6 @@ Array.from(statisticsForms).forEach(form => {
   );
 });
 
-//function validateUsername(e) {
-//  const username = document.querySelector('#username');
-//  if (reSpaces.test(username.value)) {
-//    username.classList.remove('is-invalid');
-//    username.classList.add('is-valid');
-//    return true;
-//  } else {
-//    username.classList.remove('is-valid');
-//
-//    username.classList.add('is-invalid');
-//    return false;
-//  }
-//}
-
 function validateEmail(e) {
   const email = document.querySelector("#email");
   const re = /^([a-zA-Z0-9_\-?\.?]){3,}@([a-zA-Z]){3,}\.([a-zA-Z]){2,5}$/;
@@ -79,10 +65,12 @@ function validateEntryYear(e) {
 
   if (reSpaces.test(value) && re.test(value)) {
     entryYear.classList.remove("is-invalid");
+    entryYear.classList.remove("invalid");
     entryYear.classList.add("is-valid");
     return true;
   } else {
     entryYear.classList.add("is-invalid");
+    entryYear.classList.add("invalid");
     entryYear.classList.remove("is-valid");
     return false;
   }
@@ -104,19 +92,3 @@ function validateYear(e) {
     return false;
   }
 }
-
-//function validatePassword() {
-//  const password = document.querySelector('#password');
-//  const re = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})(?=.*[!@#$%^&*])/;
-//  if (re.test(password.value) && reSpaces.test(password.value)) {
-//    password.classList.remove('is-invalid');
-//    password.classList.add('is-valid');
-//
-//    return true;
-//  } else {
-//    password.classList.add('is-invalid');
-//    password.classList.remove('is-valid');
-//
-//    return false;
-//  }
-//}
