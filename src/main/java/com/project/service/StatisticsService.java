@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.project.model.Statistics;
+import com.project.model.StudentApplication;
 
 import java.util.List;
 
@@ -15,4 +16,21 @@ public interface StatisticsService {
      * @param statistics
      */
     public void add(Statistics statistics);
+
+    /* Getting data from the statistics table by id
+     * @param id
+     * @return Statistics
+     */
+    public Statistics getStatisticsById(int id);
+
+    /* Delete the data in the Statistics table by id
+     * @param id
+     */
+    public void deleteStatisticsById(int id);
+
+    /* query the data in the Statistics table by year
+     *
+     */
+    List<Statistics> findAllByStudyYear();
+
 }

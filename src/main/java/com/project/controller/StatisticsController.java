@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+
 @Controller
 public class StatisticsController {
     @Autowired
@@ -21,6 +23,13 @@ public class StatisticsController {
     @PostMapping("/addStatistics")
     public String addStatistics(@ModelAttribute("statisticsItem") Statistics statistics) {
         statisticsService.add(statistics);
+        return "redirect:/statistics";
+    }
+
+    @GetMapping("/deleteStatistics/{id}")
+    public String deleteStatistics(@PathVariable (value = "id") int id){
+        //Call delete student's statistics method
+        this.statisticsService.deleteStatisticsById(id);
         return "redirect:/statistics";
     }
 }

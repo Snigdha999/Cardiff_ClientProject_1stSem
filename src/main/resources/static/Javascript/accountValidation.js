@@ -4,9 +4,7 @@ let passwordInput = document.getElementById("password"); // The 'Password' field
 let repeatPasswordInput = document.getElementById("repeatPassword"); // The 'Repeat password' field
 let passwordsDontMatch = document.getElementById("passwordsDontMatch");
 let usernameRequired = document.getElementById("usernameRequired");
-let usernameInput = document.getElementById("username");
-let isSuperUser = document.getElementById("isSuperUser");
-let isSuperUserHidden = document.getElementById("hiddenFieldIsSuperUser");
+let usernameInput = document.querySelector("input[id='username']");
 
 let validUsername = false;
 let validRepeatPassword = false;
@@ -61,17 +59,5 @@ function checkValidity()
     {
         createAccountButton.style.pointerEvents = "none"; // Prevent the user from clicking the button
         createAccountButton.style.opacity = 0.5; // Set the opacity to 50%
-    }
-}
-
-function setSuperUserProp()
-{
-    if (isSuperUser.checked == true)
-    {
-        isSuperUserHidden.value = "superUser";
-    }
-    else
-    {
-        isSuperUserHidden.value = "user";
     }
 }
