@@ -33,4 +33,6 @@ public interface StatisticsService {
      */
     List<Statistics> findAllByStudyYear();
 
+    void deleteAll();
+
 }

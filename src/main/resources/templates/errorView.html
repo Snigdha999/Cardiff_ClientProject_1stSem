@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="template :: header"></div>
+    <link rel="stylesheet" th:href="@{noapplications.css}">
+</head>
+<body>
+<!-- Navigation bar -->
+<nav th:replace="template :: navbar('no;)"></nav>
+<!-- Main page -->
+<main>
+    <div class="img-container">
+        <img src="../images/error/jpg" alt="error">
+    </div>
+    <p class="text">Sorry, no applications found :(</p>
+</main>
+</body>
+</html>

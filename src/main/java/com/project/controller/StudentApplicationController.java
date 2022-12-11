@@ -1,8 +1,10 @@
 package com.project.controller;
 
-import com.project.model.ApplicationExcelExporter;
+import com.project.model.Statistics;
+import com.project.service.ApplicationExcelService;
 import com.project.model.ApplicationStatus;
 import com.project.model.StudentApplication;
+import com.project.service.StatisticsExcelService;
 import com.project.service.StudentApplicationService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +12,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.io.InputStream;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class StudentApplicationController {
@@ -29,7 +28,7 @@ public class StudentApplicationController {
         List<StudentApplication> applications = studentApplicationService.getAll(keyword);
         model.addAttribute("listApplications", applications);
         model.addAttribute("applicationStatusList", ApplicationStatus.values());
-        if(applications.size() == 0) {
+        if(applications.size() == 0 && keyword != null) {
             return "noApplicationsFound";
         }
         return "applications";
@@ -64,17 +63,36 @@ public class StudentApplicationController {
         return "redirect:/applications";
     }
 
-    @GetMapping("/exportData")
+    @GetMapping("/exportApplications")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";
-        DateFormat dateFormatter = new SimpleDateFormat("");
         String headerValue = "attachment; filename=applications.xlsx";
         response.setHeader(headerKey, headerValue);
         List<StudentApplication> applications = studentApplicationService.getAll(null);
-        ApplicationExcelExporter excelExporter = new ApplicationExcelExporter(applications);
+        ApplicationExcelService excelExporter = new ApplicationExcelService(applications);
         excelExporter.export(response);
     }
+
+    @PostMapping("/importApplications")
+    public String importFromExcel(@RequestParam("file") MultipartFile files) {
+        try {
+            InputStream inputStream = files.getInputStream();
+            ApplicationExcelService excelImporter = new ApplicationExcelService(inputStream);
+            List<StudentApplication> applicationList =  excelImporter.importExcel();
+            for(StudentApplication application: applicationList) {
+                studentApplicationService.add(application);
+            }
+        } catch (IOException e) {
+            return "redirect:/errorView";
+        }
+        return "redirect:/applications";
+    }
+
+    @GetMapping("/deleteAllApplications")
+    public String deleteAllApplications(Model model) {
+        studentApplicationService.deleteAll();
+        
     @GetMapping("/getStudentApplicationStatus/{id}")
     public String getStudentApplicationStatus(@PathVariable (value = "id") int id, Model model){
         StudentApplication application = studentApplicationService.getStudentApplicationById(id);
