@@ -444,97 +444,106 @@ public class ApplicationExcelService {
         outputStream.close();
     }
 
+    public String getStringValue(int index, XSSFRow row) {
+        Cell cell = row.getCell(index);
+        if(cell == null) {
+            return "";
+        }
+        return String.valueOf(cell.toString());
+    }
+
     public List<StudentApplication> importExcel() throws IOException {
         for (int index = 0; index < sheet.getPhysicalNumberOfRows(); index++) {
-            if (index > 0) {
+            if (index > 0 ) {
                 StudentApplication application = new StudentApplication();
                 XSSFRow row = sheet.getRow(index);
+                if (row != null && row.getCell(0).toString() != "") {
+                    application.setUcasCode(getStringValue(0, row));
 
-                application.setUcasCode(row.getCell(0).getStringCellValue());
+                    application.setCourseCode(getStringValue(1, row));
 
-                application.setCourseCode(row.getCell(1).getStringCellValue());
+                    application.setFirstCreated(getStringValue(2, row));
 
-                application.setFirstCreated(row.getCell(2).getStringCellValue());
+                    application.setEntryYear(getStringValue(3, row));
 
-                application.setEntryYear(row.getCell(3).getStringCellValue());
+                    application.setStudentNumber(getStringValue(4, row));
 
-                application.setStudentNumber(row.getCell(4).getStringCellValue());
+                    application.setPersonalId(getStringValue(5, row));
 
-                application.setPersonalId(row.getCell(5).getStringCellValue());
+                    application.setStatusCode(getStringValue(6, row));
 
-                application.setStatusCode(row.getCell(6).getStringCellValue());
+                    application.setLatestDecision(getStringValue(7, row));
 
-                application.setLatestDecision(row.getCell(7).getStringCellValue());
+                    application.setName(getStringValue(8, row));
 
-                application.setName(row.getCell(8).getStringCellValue());
+                    application.setSurname(getStringValue(9, row));
 
-                application.setSurname(row.getCell(9).getStringCellValue());
+                    application.setDateOfBirth(getStringValue(10, row));
 
-                application.setDateOfBirth(row.getCell(10).getStringCellValue());
+                    application.setGender(getStringValue(11, row));
 
-                application.setGender(row.getCell(11).getStringCellValue());
+                    application.setFeeStatus(getStringValue(12, row));
 
-                application.setFeeStatus(row.getCell(12).getStringCellValue());
+                    application.setCorrespondenceLang(getStringValue(13, row));
 
-                application.setCorrespondenceLang(row.getCell(13).getStringCellValue());
+                    application.setWelshSpeaker(getStringValue(14, row));
 
-                application.setWelshSpeaker(row.getCell(14).getStringCellValue());
+                    application.setCountry(getStringValue(15, row));
 
-                application.setCountry(row.getCell(15).getStringCellValue());
+                    application.setNationality(getStringValue(16, row));
 
-                application.setNationality(row.getCell(16).getStringCellValue());
+                    application.setEmail(getStringValue(17, row));
 
-                application.setEmail(row.getCell(17).getStringCellValue());
+                    application.setDateReceived(getStringValue(18, row));
 
-                application.setDateReceived(row.getCell(18).getStringCellValue());
+                    application.setContextual(getStringValue(19, row));
 
-                application.setContextual(row.getCell(19).getStringCellValue());
+                    application.setApplicationStatus(application.parseExcelApplicationStatus(getStringValue(20, row)));
 
-                application.setApplicationStatus(application.parseExcelApplicationStatus(row.getCell(20).getStringCellValue()));
+                    application.setApplicationStatusComments(getStringValue(21, row));
 
-                application.setApplicationStatusComments(row.getCell(21).getStringCellValue());
+                    application.setFeeStatus(getStringValue(22, row));
 
-                application.setFeeStatus(row.getCell(22).getStringCellValue());
+                    application.setHighestQualification(getStringValue(23, row));
 
-                application.setHighestQualification(row.getCell(23).getStringCellValue());
+                    application.setGradesAchieved(getStringValue(24, row));
 
-                application.setGradesAchieved(row.getCell(24).getStringCellValue());
+                    application.setKeepEmailSent(getStringValue(25, row));
 
-                application.setKeepEmailSent(row.getCell(25).getStringCellValue());
+                    application.setPersonalStatementScore(getStringValue(26, row));
 
-                application.setPersonalStatementScore(row.getCell(26).getStringCellValue());
+                    application.setInviteToInterview(getStringValue(27, row));
 
-                application.setInviteToInterview(row.getCell(27).getStringCellValue());
+                    application.setInterviewDate(getStringValue(28, row));
 
-                application.setInterviewDate(row.getCell(28).getStringCellValue());
+                    application.setInterviewComments(getStringValue(29, row));
 
-                application.setInterviewComments(row.getCell(29).getStringCellValue());
+                    application.setInterviewScore(getStringValue(30, row));
 
-                application.setInterviewScore(row.getCell(30).getStringCellValue());
+                    application.setFtpChecked(getStringValue(31, row));
 
-                application.setFtpChecked(row.getCell(31).getStringCellValue());
+                    application.setOfferConditions(getStringValue(32, row));
 
-                application.setOfferConditions(row.getCell(32).getStringCellValue());
+                    application.setNonStandardEmail(getStringValue(33, row));
 
-                application.setNonStandardEmail(row.getCell(33).getStringCellValue());
+                    application.setConfirmationComments(getStringValue(34, row));
 
-                application.setConfirmationComments(row.getCell(34).getStringCellValue());
+                    application.setOfferEmailSent(getStringValue(35, row));
 
-                application.setOfferEmailSent(row.getCell(35).getStringCellValue());
+                    application.setIssueDate(getStringValue(36, row));
 
-                application.setIssueDate(row.getCell(36).getStringCellValue());
+                    application.setDbsCertNumber(getStringValue(37, row));
 
-                application.setDbsCertNumber(row.getCell(37).getStringCellValue());
+                    application.setFaStatus(getStringValue(38, row));
 
-                application.setFaStatus(row.getCell(38).getStringCellValue());
+                    application.setUpdateService(getStringValue(39, row));
 
-                application.setUpdateService(row.getCell(39).getStringCellValue());
+                    application.setEssentialToDos(getStringValue(40, row));
 
-                application.setEssentialToDos(row.getCell(40).getStringCellValue());
+                    application.setEnrolmentCriteriaComments(getStringValue(41, row));
 
-                application.setEnrolmentCriteriaComments(row.getCell(41).getStringCellValue());
-
-                applicationsList.add(application);
+                    applicationsList.add(application);
+                }
             }
         }
         return applicationsList;
