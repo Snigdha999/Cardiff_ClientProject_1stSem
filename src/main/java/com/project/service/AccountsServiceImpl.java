@@ -13,7 +13,7 @@ public class AccountsServiceImpl implements AccountsService {
     @Autowired
     private AccountsRepository accountsRepository;
 
-    /* Getting all data
+    /* Getting all data from the account
      * @return List
      */
     @Override
@@ -21,7 +21,7 @@ public class AccountsServiceImpl implements AccountsService {
         return accountsRepository.findAll();
     }
 
-    /* Adding the data
+    /* Adding the data in the account
      * @param Accounts
      */
     @Override
@@ -29,11 +29,18 @@ public class AccountsServiceImpl implements AccountsService {
         this.accountsRepository.save(accounts);
     }
 
+    /* Deleting an account data by their id
+     * @param id
+     */
     @Override
     public void deleteAccountById(int id) {
         this.accountsRepository.deleteById(id);
     }
 
+    /* Getting an account data by their id
+     * @param id
+     * @return Accounts
+     */
     @Override
     public Accounts getAccountById(int id){
         Optional<Accounts> optional = accountsRepository.findById(id);
