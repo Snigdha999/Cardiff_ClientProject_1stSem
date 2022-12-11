@@ -25,9 +25,29 @@ public class SettingsController {
         return "accounts";
     }
 
+    @GetMapping("/editAccount/{id}")
+    public String editAccount(@PathVariable (value = "id") int id, Model model){
+        Accounts accounts = accountsService.getAccountById(id);
+        model.addAttribute("updateAccount", accounts);
+        return "editAccount";
+    }
+
     @PostMapping("/addAccount")
     public String addAccount(@ModelAttribute("newAccount") Accounts accounts) {
         accountsService.add(accounts);
         return "redirect:/accounts";
     }
+
+    @GetMapping("/deleteAccount/{id}")
+    public String deleteAccount(@PathVariable (value = "id") int id){
+        this.accountsService.deleteAccountById(id);
+        return "redirect:/accounts";
+    }
+
+    @PostMapping("/editAccount/{id}")
+    public String editAccounts(@PathVariable (value = "id") int id, @ModelAttribute("newAccount") Accounts accounts){
+        accountsService.add(accounts);
+        return "redirect:/accounts";
+    }
+
 }
