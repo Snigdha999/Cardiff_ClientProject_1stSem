@@ -2,9 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <div th:replace="template :: header"></div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="../css/datepicker.css">
@@ -30,18 +27,24 @@
                             Add application
                         </button>
                     </li>
+                    <li class="nav-item me-2">
+                        <a th:href="@{/deleteAllApplications}" class="btn btn-dark" >
+                            Delete all
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
                             Import / Export data
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/importApplications}">Import from Excel <i
+                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                   data-bs-target="#uploadDataModal">Import Excel <i
                                     class="fa-solid fa-upload"></i></a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" th:href="@{/exportApplications}">Export to Excel <i
+                            <li><a class="dropdown-item" th:href="@{/exportApplications}">Export Excel <i
                                     class="fa-solid fa-download"></i></a></li>
                         </ul>
                     </li>
@@ -177,7 +180,8 @@
                           class="form application-needs-validation" novalidate>
                         <div>
                             <div class="mb-3">
-                                <label for="ucasCode" class="form-label">Input UCAS Cardiff course: <i class="fa-solid fa-star-of-life"></i></label>
+                                <label for="ucasCode" class="form-label">Input UCAS Cardiff course: <i
+                                        class="fa-solid fa-star-of-life"></i></label>
                                 <input type="text" autocomplete="off" class="form-control" id="ucasCode"
                                        field="*{ucasCode}"
                                        name="ucasCode" required>
@@ -186,7 +190,8 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="courseCode" class="form-label">Input Cardiff course code:</label>
+                                <label for="courseCode" class="form-label">Input Cardiff course code: <i
+                                        class="fa-solid fa-star-of-life"></i></label>
                                 <input type="text" autocomplete="off" class="form-control" id="courseCode"
                                        field="*{courseCode}"
                                        name="courseCode" required>
@@ -202,7 +207,8 @@
                                        field="*{firstCreated}" name="firstCreated" data-date-end-date="0d">
                             </div>
                             <div class="mb-3">
-                                <label for="entryYear" class="form-label">Input entry year:</label>
+                                <label for="entryYear" class="form-label">Input entry year: <i
+                                        class="fa-solid fa-star-of-life"></i></label>
                                 <input type="text" autocomplete="off" class="form-control" id="entryYear"
                                        field="*{entryYear}"
                                        name="entryYear" placeholder="Example: 22/23" required>
@@ -211,7 +217,8 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="studentNumber" class="form-label">Input student number:</label>
+                                <label for="studentNumber" class="form-label">Input student number: <i
+                                        class="fa-solid fa-star-of-life"></i></label>
                                 <input type="text" autocomplete="off" class="form-control" id="studentNumber"
                                        field="*{studentNumber}"
                                        name="studentNumber" required>
@@ -220,7 +227,8 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="personalId" class="form-label">Input personal Id:</label>
+                                <label for="personalId" class="form-label">Input personal Id: <i
+                                        class="fa-solid fa-star-of-life"></i></label>
                                 <input type="text" autocomplete="off" class="form-control" id="personalId"
                                        field="*{personalId}"
                                        name="personalId" required>
@@ -527,7 +535,6 @@
             </div>
         </div>
     </div>
-
     <!-- Change Status Modal -->
     <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="changeStatusModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -547,6 +554,26 @@
                         </ul>
                     </div>
                     <button class="btn btn-danger">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Upload Data Modal -->
+    <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="uploadDataModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLabel1">Import data</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/importApplications}" enctype="multipart/form-data" method="post">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Select .xlsx file from your computer:</label>
+                            <input class="form-control" type="file" name = "file" id="formFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                        </div>
+                        <input type = "submit" value = "Import" class="btn btn-danger"/>
+                    </form>
                 </div>
             </div>
         </div>

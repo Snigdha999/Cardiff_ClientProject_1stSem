@@ -21,3 +21,10 @@
 .navbar-collapse.collapse.show{
 padding-top: 20px;
 }
+
+.fa-solid.fa-star-of-life:before {
+  color: #dc3545;
+  max-width: 2px;
+  max-height: 2px;
+  transform: scale(.5);
+}

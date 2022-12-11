@@ -2,6 +2,9 @@ package com.project.model;
 
 import jakarta.persistence.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -441,9 +444,26 @@ public class StudentApplication {
     }
 
     public String displayApplicationStatus() {
-        if(applicationStatus == null) {
+        if (applicationStatus == null) {
             return "";
         }
-        return applicationStatus.stream().map(Enum::toString).collect(Collectors.joining(""));
+        return applicationStatus.stream().map(Enum::toString).collect(Collectors.joining(","));
+    }
+
+    public List<ApplicationStatus> parseExcelApplicationStatus(String statusFromExcel) {
+        List<ApplicationStatus> result = new ArrayList<>();
+        ApplicationStatus[] statuses = ApplicationStatus.values();
+        List<String> statusFromExcelValues = Arrays.asList(statusFromExcel.split(","));
+        for (int i = 0; i < statuses.length; i++) {
+            if(statusFromExcelValues.contains(statuses[i].toString())) {
+                result.add(statuses[i]);
+            }
+            ;
+
+//            if (Arrays.stream(statusFromExcelValues).filter(x-> x.equals(statuses[i].toString())) {
+//                result.add(statuses[i]);
+//            }
+        }
+        return result;
     }
 }

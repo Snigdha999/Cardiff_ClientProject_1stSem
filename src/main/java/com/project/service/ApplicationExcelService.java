@@ -1,26 +1,37 @@
-package com.project.model;
+package com.project.service;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.project.model.Statistics;
+import com.project.model.StudentApplication;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ApplicationExcelExporter {
+public class ApplicationExcelService {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
-    private List<StudentApplication> applications;
+    private List<StudentApplication> applicationsList;
 
-    public ApplicationExcelExporter(List<StudentApplication> applications) {
-        this.applications = applications;
-        workbook = new XSSFWorkbook();
-        sheet = workbook.createSheet("Applications");
+    public ApplicationExcelService(List<StudentApplication> applicationsList) {
+        this.applicationsList = applicationsList;
+        this.workbook = new XSSFWorkbook();
+        this.sheet = workbook.createSheet("Applications");
+    }
+
+    public ApplicationExcelService(InputStream newWorkbook) throws IOException {
+        this.applicationsList = new ArrayList<>();
+        this.workbook = new XSSFWorkbook(newWorkbook);
+        this.sheet = workbook.getSheetAt(0);
     }
 
     private void writeHeaderRow() {
@@ -209,7 +220,7 @@ public class ApplicationExcelExporter {
         font.setFontHeight(14);
         style.setFont(font);
 
-        for(StudentApplication application: applications) {
+        for(StudentApplication application: applicationsList) {
             Row row = sheet.createRow(rowCount++);
 
             Cell cell = row.createCell(0);
@@ -431,5 +442,101 @@ public class ApplicationExcelExporter {
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();
+    }
+
+    public List<StudentApplication> importExcel() throws IOException {
+        for (int index = 0; index < sheet.getPhysicalNumberOfRows(); index++) {
+            if (index > 0) {
+                StudentApplication application = new StudentApplication();
+                XSSFRow row = sheet.getRow(index);
+
+                application.setUcasCode(row.getCell(0).getStringCellValue());
+
+                application.setCourseCode(row.getCell(1).getStringCellValue());
+
+                application.setFirstCreated(row.getCell(2).getStringCellValue());
+
+                application.setEntryYear(row.getCell(3).getStringCellValue());
+
+                application.setStudentNumber(row.getCell(4).getStringCellValue());
+
+                application.setPersonalId(row.getCell(5).getStringCellValue());
+
+                application.setStatusCode(row.getCell(6).getStringCellValue());
+
+                application.setLatestDecision(row.getCell(7).getStringCellValue());
+
+                application.setName(row.getCell(8).getStringCellValue());
+
+                application.setSurname(row.getCell(9).getStringCellValue());
+
+                application.setDateOfBirth(row.getCell(10).getStringCellValue());
+
+                application.setGender(row.getCell(11).getStringCellValue());
+
+                application.setFeeStatus(row.getCell(12).getStringCellValue());
+
+                application.setCorrespondenceLang(row.getCell(13).getStringCellValue());
+
+                application.setWelshSpeaker(row.getCell(14).getStringCellValue());
+
+                application.setCountry(row.getCell(15).getStringCellValue());
+
+                application.setNationality(row.getCell(16).getStringCellValue());
+
+                application.setEmail(row.getCell(17).getStringCellValue());
+
+                application.setDateReceived(row.getCell(18).getStringCellValue());
+
+                application.setContextual(row.getCell(19).getStringCellValue());
+
+                application.setApplicationStatus(application.parseExcelApplicationStatus(row.getCell(20).getStringCellValue()));
+
+                application.setApplicationStatusComments(row.getCell(21).getStringCellValue());
+
+                application.setFeeStatus(row.getCell(22).getStringCellValue());
+
+                application.setHighestQualification(row.getCell(23).getStringCellValue());
+
+                application.setGradesAchieved(row.getCell(24).getStringCellValue());
+
+                application.setKeepEmailSent(row.getCell(25).getStringCellValue());
+
+                application.setPersonalStatementScore(row.getCell(26).getStringCellValue());
+
+                application.setInviteToInterview(row.getCell(27).getStringCellValue());
+
+                application.setInterviewDate(row.getCell(28).getStringCellValue());
+
+                application.setInterviewComments(row.getCell(29).getStringCellValue());
+
+                application.setInterviewScore(row.getCell(30).getStringCellValue());
+
+                application.setFtpChecked(row.getCell(31).getStringCellValue());
+
+                application.setOfferConditions(row.getCell(32).getStringCellValue());
+
+                application.setNonStandardEmail(row.getCell(33).getStringCellValue());
+
+                application.setConfirmationComments(row.getCell(34).getStringCellValue());
+
+                application.setOfferEmailSent(row.getCell(35).getStringCellValue());
+
+                application.setIssueDate(row.getCell(36).getStringCellValue());
+
+                application.setDbsCertNumber(row.getCell(37).getStringCellValue());
+
+                application.setFaStatus(row.getCell(38).getStringCellValue());
+
+                application.setUpdateService(row.getCell(39).getStringCellValue());
+
+                application.setEssentialToDos(row.getCell(40).getStringCellValue());
+
+                application.setEnrolmentCriteriaComments(row.getCell(41).getStringCellValue());
+
+                applicationsList.add(application);
+            }
+        }
+        return applicationsList;
     }
 }

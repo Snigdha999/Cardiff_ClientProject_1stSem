@@ -1,26 +1,37 @@
-package com.project.model;
+package com.project.service;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.project.model.Statistics;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
-public class StatisticsExcelExporter {
+public class StatisticsExcelService {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
-    private List<Statistics> statistics;
+    private List<Statistics> statisticsList;
 
-    public StatisticsExcelExporter(List<Statistics> statistics) {
-        this.statistics = statistics;
+    public StatisticsExcelService(List<Statistics> statisticsList) {
+        this.statisticsList = statisticsList;
         workbook = new XSSFWorkbook();
         sheet = workbook.createSheet("Statistics");
+    }
+
+    public StatisticsExcelService(InputStream newWorkbook) throws IOException {
+        this.statisticsList = new ArrayList<>();
+        this.workbook = new XSSFWorkbook(newWorkbook);
+        this.sheet = workbook.getSheetAt(0);
     }
 
     private void writeHeaderRow() {
@@ -53,7 +64,7 @@ public class StatisticsExcelExporter {
         font.setFontHeight(14);
         style.setFont(font);
 
-        for(Statistics statisticsItem: statistics) {
+        for(Statistics statisticsItem: statisticsList) {
             Row row = sheet.createRow(rowCount++);
 
             Cell cell = row.createCell(0);
@@ -80,5 +91,20 @@ public class StatisticsExcelExporter {
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();
+    }
+
+    public List<Statistics> importExcel() throws IOException {
+        for (int index = 0; index < sheet.getPhysicalNumberOfRows(); index++) {
+            if (index > 0) {
+                Statistics statistics = new Statistics();
+
+                XSSFRow row = sheet.getRow(index);
+                statistics.setStudyYear(row.getCell(0).getStringCellValue());
+                statistics.setPlaces((int) row.getCell(1).getNumericCellValue());
+                statistics.setOffers((int) row.getCell(2).getNumericCellValue());
+                statisticsList.add(statistics);
+            }
+        }
+        return statisticsList;
     }
 }

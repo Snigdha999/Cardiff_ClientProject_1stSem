@@ -36,4 +36,6 @@ public interface StudentApplicationService {
      * @return int
      */
     public int getAmountOfOffers();
+
+    void deleteAll();
 }
