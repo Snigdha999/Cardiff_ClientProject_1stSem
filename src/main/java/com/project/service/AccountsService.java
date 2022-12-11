@@ -4,7 +4,7 @@ import com.project.model.Accounts;
 
 import java.util.List;
 
-public interface AccountsService {
+public interface AccountsService  {
     List<Accounts> getAll();
 
     /* Getting all data
