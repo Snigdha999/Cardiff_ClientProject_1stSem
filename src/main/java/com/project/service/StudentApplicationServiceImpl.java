@@ -95,6 +95,8 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
         return counter;
     }
 
+    /* Delete all the data
+     */
     @Override
     public void deleteAll() {
         studentApplicationRepository.deleteAll();
