@@ -1,7 +1,11 @@
 package com.project.controller;
 
+import com.project.model.ApplicationStatus;
 import com.project.model.Statistics;
+<<<<<<< src/main/java/com/project/controller/StatisticsController.java
 import com.project.service.StatisticsExcelService;
+=======
+import com.project.model.StudentApplication;
 import com.project.service.StatisticsService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +74,19 @@ public class StatisticsController {
     @GetMapping("/deleteAllStatistics")
     public String deleteAllStatistics(Model model) {
         statisticsService.deleteAll();
+        return "redirect:/statistics";
+    }
+
+    @GetMapping("/getStatistics/{id}")
+    public String getStatistics(@PathVariable (value = "id") int id, Model model){
+        Statistics statistics = statisticsService.getStatisticsById(id);
+        model.addAttribute("updateStatistics", statistics);
+        return "updateStatistics";
+    }
+
+    @PostMapping("/updateStatistics/{id}")
+    public String updateStudentApplication(@PathVariable (value = "id") int id, @ModelAttribute("newStatistics") Statistics statistics){
+        statisticsService.add(statistics);
         return "redirect:/statistics";
     }
 }
