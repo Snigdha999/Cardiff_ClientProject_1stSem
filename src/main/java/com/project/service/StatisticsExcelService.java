@@ -93,16 +93,34 @@ public class StatisticsExcelService {
         outputStream.close();
     }
 
+    public String getStringValue(int index, XSSFRow row) {
+        Cell cell = row.getCell(index);
+        if(cell == null) {
+            return "";
+        }
+        return cell.toString();
+    }
+
+    public int getIntValue(int index, XSSFRow row) {
+        Cell cell = row.getCell(index);
+        if(cell == null) {
+            return 0;
+        }
+        return (int) cell.getNumericCellValue();
+    }
+
     public List<Statistics> importExcel() throws IOException {
         for (int index = 0; index < sheet.getPhysicalNumberOfRows(); index++) {
             if (index > 0) {
                 Statistics statistics = new Statistics();
-
                 XSSFRow row = sheet.getRow(index);
-                statistics.setStudyYear(row.getCell(0).getStringCellValue());
-                statistics.setPlaces((int) row.getCell(1).getNumericCellValue());
-                statistics.setOffers((int) row.getCell(2).getNumericCellValue());
-                statisticsList.add(statistics);
+
+                if (row != null && row.getCell(0).toString() != "") {
+                    statistics.setStudyYear(getStringValue(0, row));
+                    statistics.setPlaces(getIntValue(1, row));
+                    statistics.setOffers(getIntValue(2, row));
+                    statisticsList.add(statistics);
+                }
             }
         }
         return statisticsList;
