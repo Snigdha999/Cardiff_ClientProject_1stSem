@@ -92,6 +92,8 @@ public class StudentApplicationController {
     @GetMapping("/deleteAllApplications")
     public String deleteAllApplications(Model model) {
         studentApplicationService.deleteAll();
+        return "redirect:/applications";
+    }
         
     @GetMapping("/getStudentApplicationStatus/{id}")
     public String getStudentApplicationStatus(@PathVariable (value = "id") int id, Model model){

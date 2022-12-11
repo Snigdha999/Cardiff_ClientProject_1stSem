@@ -1,11 +1,7 @@
 package com.project.controller;
 
-import com.project.model.ApplicationStatus;
 import com.project.model.Statistics;
-<<<<<<< src/main/java/com/project/controller/StatisticsController.java
 import com.project.service.StatisticsExcelService;
-=======
-import com.project.model.StudentApplication;
 import com.project.service.StatisticsService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
 import java.io.IOException;
 import java.io.InputStream;
