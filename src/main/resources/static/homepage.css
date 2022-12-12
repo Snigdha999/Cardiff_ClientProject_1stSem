@@ -33,5 +33,9 @@
 }
 
 .card-info {
-margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.headerFont {
+    margin-top: 3rem;
 }
