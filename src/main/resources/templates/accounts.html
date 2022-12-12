@@ -16,7 +16,10 @@
         <thead class="table-light">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Username</th>
+            <th scope="col">
+                <a th:href="@{'/accountPage/' + ${currentAccountPage} + '?accountSortField=username&accountSortDir=' + ${reverseAccountSortDir}}">
+                    Username</a>
+            </th>
             <th scope="col">Password</th>
             <th scope="col">Account Type</th>
             <th scope="col">Actions</th>
@@ -35,7 +38,35 @@
           </tr>
         </tbody>
     </table>
-    <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addAccountsModel" tabindex="-1">
+
+        <div th:if = "${accountTotalPages > 1}">
+            <div class = "row col-sm-10">
+                <div class = "col-sm-2">
+                    Total Rows: [[${accountTotalItems}]]
+                </div>
+
+                <div class = "col-sm-1">
+                    <span th:each="i: ${#numbers.sequence(1, accountTotalPages)}">
+                        <a th:if="${currentAccountPage != i}" th:href="@{'/accountPage/' + ${i} + '?accountSortField=' + ${accountSortField} + '&accountSortDir=' + ${accountSortDir}}">[[${i}]]</a>
+                        <span th:unless="${currentAccountPage != i}">[[${i}]]</span> &nbsp;&nbsp;
+                    </span>
+                </div>
+
+                <div class = "col-sm-1">
+                    <a th:if="${currentAccountPage < accountTotalPages}" th:href="@{'/accountPage/' + ${currentAccountPage + 1} + '?accountSortField=' + ${accountSortField} + '&accountSortDir=' + ${accountSortDir}}">NEXT</a>
+                    <span th:unless="${currentAccountPage < accountTotalPages}">NEXT</span>
+                </div>
+
+                <div class = "col-sm-1">
+                    <a th:if="${currentAccountPage < accountTotalPages}" th:href="@{'/accountPage/' + ${accountTotalPages} + '?accountSortField=' + ${accountSortField} + '&accountSortDir=' + ${accountSortDir}}">LAST</a>
+                    <span th:unless="${currentAccountPage < accountTotalPages}">LAST</span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addAccountsModel" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
