@@ -4,9 +4,6 @@
     <div th:replace="template :: header"></div>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
     <link rel="stylesheet" href="../css/datepicker.css">
     <link rel="stylesheet" href="../css/validation.css">
     <link rel="stylesheet" href="applications.css">
@@ -167,32 +164,6 @@
             </tr>
             </tbody>
         </table>
-
-        <div th:if = "${applicationTotalPages > 1}">
-            <div class = "row col-sm-10">
-                <div class = "col-sm-2">
-                    Total Rows: [[${applicationTotalItems}]]
-                </div>
-
-                <div class = "col-sm-1">
-                    <span th:each="i: ${#numbers.sequence(1, applicationTotalPages)}">
-                        <a th:if="${currentApplicationPage != i}" th:href="@{'/applicationPage/' + ${i}}">[[${i}]]</a>
-                        <span th:unless="${currentApplicationPage != i}">[[${i}]]</span> &nbsp; &nbsp;
-                    </span>
-                </div>
-
-                <div class = "col-sm-1">
-                    <a th:if="${currentApplicationPage < applicationTotalPages}" th:href="@{'/applicationPage/' + ${currentApplicationPage + 1}}">NEXT</a>
-                    <span th:unless="${currentApplicationPage < applicationTotalPages}">NEXT</span>
-                </div>
-
-                <div class = "col-sm-1">
-                    <a th:if="${currentApplicationPage < applicationTotalPages}" th:href="@{'/applicationPage/' + ${applicationTotalPages}}">LAST</a>
-                    <span th:unless="${currentApplicationPage < applicationTotalPages}">LAST</span>
-                </div>
-            </div>
-        </div>
-
     </div>
     <!-- Modal -->
     <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addApplicationModal" tabindex="-1">
