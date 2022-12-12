@@ -134,6 +134,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         return (int) prediction;
     }
 
+    @Override
     public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection) {
         Sort statisticSort = statisticSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(statisticSortField).ascending() :
                 Sort.by(statisticSortField).descending();
