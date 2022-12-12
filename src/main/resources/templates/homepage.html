@@ -11,6 +11,8 @@
     .headerFont{
         font-family: franklin_gothic_fs_medregular,Arial,Helvetica Neue,sans-serif
     }
+
+
 </style>
 <body>
 <!-- Navigation bar -->
@@ -28,12 +30,16 @@
 
     <div class="row boximages">
         <div class="col-sm-4 cardbox">
-            <div class="card" >
-                <img th:src="@{applicationcard.png}" width="100px" alt="card1">
+            <div class="card">
+                <div class="image-container">
+                    <img th:src="@{images/application_card.png}" width="100px" alt="card1">
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Amount of Applications</h5>
-                    <p class="card-text">Number of the student's applications we have received are:</p>
-                    <p class="card-text fw-bold" th:text="${amountOfApplications}"></p>
+                    <div class="card-info">
+                        <h5 class="card-title">Amount of Applications</h5>
+                        <p class="card-text">Number of the student's applications we have received:</p>
+                        <p class="card-text fw-bold" th:text="${amountOfApplications}"></p>
+                    </div>
                     <a href="/applications" class="btn btn-danger">View Details</a>
                 </div>
             </div>
@@ -41,11 +47,15 @@
 
         <div class="col-sm-4 cardbox">
             <div class="card">
-                <img th:src="@{offercard.png}" width="100px" alt="card2">
+                <div class="image-container">
+                    <img th:src="@{images/offer_card.png}" width="100px" alt="card2">
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Amount of Offers</h5>
-                    <p class="card-text ">Number of the student's offers we have made are:</p>
-                    <p class="card-text fw-bold" th:text="${amountOfOffers}"></p>
+                    <div class="card-info">
+                        <h5 class="card-title">Amount of Offers</h5>
+                        <p class="card-text ">Number of the offers we have made for students:</p>
+                        <p class="card-text fw-bold" th:text="${amountOfOffers}"></p>
+                    </div>
                     <a href="/applications" class="btn btn-danger">View Details</a>
                 </div>
             </div>
@@ -53,11 +63,15 @@
 
         <div class="col-sm-4 cardbox">
             <div class="card">
-                <img th:src="@{placecard.png}" width="100px" alt="card3">
+                <div class="image-container">
+                    <img th:src="@{images/place_card.png}" width="100px" alt="card3">
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Amount of Places</h5>
-                    <p class="card-text">Number of the student's funded places we have are:</p>
-                    <p class="card-text fw-bold" th:text="${amountOfPlace} ?: 'No Update'"></p>
+                    <div class="card-info">
+                        <h5 class="card-title">Amount of Places</h5>
+                        <p class="card-text">Nnmber of funded places we can offer students:</p>
+                        <p class="card-text fw-bold" th:text="${amountOfPlace} ?: 'No Update'"></p>
+                    </div>
                     <!--Current year places                    -->
                     <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
@@ -123,6 +137,8 @@
                 ]
             });
         });
+
+
     </script>
 
     <h2 lass="mb-1">
