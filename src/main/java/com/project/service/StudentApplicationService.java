@@ -1,6 +1,7 @@
 package com.project.service;
 
-import com.project.model.StudentApplication;
+import  com.project.model.StudentApplication;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -36,6 +37,11 @@ public interface StudentApplicationService {
      * @return int
      */
     public int getAmountOfOffers();
+
+    /* Creating the method of pagination for students' applications
+     * @param applicationPageNo
+     */
+    Page<StudentApplication> findApplicationPaginated(int applicationPageNo, int applicationPageSize);
 
     /* Delete all the data
      */
