@@ -6,6 +6,7 @@ import com.project.model.StudentApplication;
 import com.project.service.StudentApplicationService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,12 +27,29 @@ public class StudentApplicationController {
 
     @RequestMapping("/applications")
     public String viewApplicationsPage(@Param("keyword") String keyword, Model model) {
-        List<StudentApplication> applications = studentApplicationService.getAll(keyword);
-        model.addAttribute("listApplications", applications);
-        model.addAttribute("applicationStatusList", ApplicationStatus.values());
-        if(applications.size() == 0) {
-            return "noApplicationsFound";
+        if(keyword != null){
+            List<StudentApplication> applications = studentApplicationService.getAll(keyword);
+            model.addAttribute("listApplications", applications);
+            model.addAttribute("applicationStatusList", ApplicationStatus.values());
+            if(applications.size() == 0) {
+                return "noApplicationsFound";
+            }
         }
+
+        else{
+            int applicationPageSize = 4;
+            Page<StudentApplication> applicationPage = studentApplicationService.findApplicationPaginated(1, applicationPageSize);
+            List<StudentApplication> applications = applicationPage.getContent();
+            model.addAttribute("currentApplicationPage", 1);
+            model.addAttribute("applicationTotalPages", applicationPage.getTotalPages());
+            model.addAttribute("applicationTotalItems", applicationPage.getTotalElements());
+            model.addAttribute("listApplications", applications);
+            model.addAttribute("applicationStatusList", ApplicationStatus.values());
+            if(applications.size() == 0) {
+                return "noApplicationsFound";
+            }
+        }
+
         return "applications";
     }
 
@@ -75,4 +93,24 @@ public class StudentApplicationController {
         ApplicationExcelExporter excelExporter = new ApplicationExcelExporter(applications);
         excelExporter.export(response);
     }
+
+    @GetMapping("/applicationPage/{applicationPageNo}")
+    public String findApplicationPaginated(@PathVariable (value = "applicationPageNo") int applicationPageNo, Model model){
+        int applicationPageSize = 4;
+
+        Page<StudentApplication> applicationPage = studentApplicationService.findApplicationPaginated(applicationPageNo, applicationPageSize);
+        List<StudentApplication> applications = applicationPage.getContent();
+
+        model.addAttribute("currentApplicationPage", applicationPageNo);
+        model.addAttribute("applicationTotalPages", applicationPage.getTotalPages());
+        model.addAttribute("applicationTotalItems", applicationPage.getTotalElements());
+        model.addAttribute("listApplications", applications);
+        model.addAttribute("applicationStatusList", ApplicationStatus.values());
+
+        return "applications";
+
+    }
+
+
+
 }
