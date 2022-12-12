@@ -49,9 +49,6 @@ public class StudentApplicationController {
 
             model.addAttribute("listApplications", applications);
             model.addAttribute("applicationStatusList", ApplicationStatus.values());
-            if(applications.size() == 0) {
-                return "noApplicationsFound";
-            }
         }
 
         return "applications";
@@ -143,7 +140,7 @@ public class StudentApplicationController {
         studentApplicationService.deleteAll();
         return "redirect:/applications";
     }
-        
+
     @GetMapping("/getStudentApplicationStatus/{id}")
     public String getStudentApplicationStatus(@PathVariable (value = "id") int id, Model model){
         StudentApplication application = studentApplicationService.getStudentApplicationById(id);
