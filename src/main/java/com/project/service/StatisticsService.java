@@ -37,4 +37,6 @@ public interface StatisticsService {
      */
     public void deleteAll();
 
+    public int predictPlaces();
+    public int predictOffers();
 }

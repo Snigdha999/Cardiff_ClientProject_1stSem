@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -98,4 +95,37 @@ public class StatisticsServiceImpl implements StatisticsService {
         statisticsRepository.deleteAll();
     }
 
+
+    @Override
+    public int predictPlaces() {
+        double profit = 0;
+        double avgProfit = 0;
+        double prediction = 0;
+        List<Statistics> statistics = statisticsRepository.findAll();
+        if (statistics.size() != 0) {
+            for (int i = 0; i < statistics.size()-1; i++) {
+                    profit += statistics.get(i+1).getPlaces() - statistics.get(i).getPlaces();
+            }
+            avgProfit = profit / (statistics.size()-1);
+            prediction = statistics.get(statistics.size()-1).getPlaces() + avgProfit ;
+        }
+        return (int) prediction;
+    }
+
+    @Override
+    public int predictOffers() {
+        double profit = 0;
+        double avgProfit = 0;
+        double prediction = 0;
+        List<Statistics> statistics = statisticsRepository.findAll();
+        if (statistics.size() != 0) {
+            for (int i = 0; i < statistics.size()-1; i++) {
+                    profit += statistics.get(i+1).getOffers() - statistics.get(i).getOffers();
+
+            }
+            avgProfit = profit / (statistics.size()-1);
+            prediction = statistics.get(statistics.size()-1).getOffers() + avgProfit ;
+        }
+        return (int) prediction;
+    }
 }
