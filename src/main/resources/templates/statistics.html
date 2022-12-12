@@ -74,6 +74,34 @@
             </tr>
             </tbody>
         </table>
+
+
+        <div th:if = "${statisticTotalPages > 1}">
+            <div class = "row col-sm-10">
+                <div class = "col-sm-2">
+                    Total Rows: [[${statisticTotalItems}]]
+                </div>
+
+                <div class = "col-sm-1">
+                    <span th:each="i: ${#numbers.sequence(1, statisticTotalPages)}">
+                        <a th:if="${currentStatisticPage != i}" th:href="@{'/statisticPage/' + ${i}}">[[${i}]]</a>
+                        <span th:unless="${currentStatisticPage != i}">[[${i}]]</span> &nbsp;&nbsp;
+                    </span>
+                </div>
+
+                <div class = "col-sm-1">
+                    <a th:if="${currentStatisticPage < statisticTotalPages}" th:href="@{'/statisticPage/' + ${currentStatisticPage + 1}}">NEXT</a>
+                    <span th:unless="${currentStatisticPage < statisticTotalPages}">NEXT</span>
+                </div>
+
+                <div class = "col-sm-1">
+                    <a th:if="${currentStatisticPage < statisticTotalPages}" th:href="@{'/statisticPage/' + ${statisticTotalPages}}">LAST</a>
+                    <span th:unless="${currentStatisticPage < statisticTotalPages}">LAST</span>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <!-- Add Statistics Modal -->
     <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addStatisticsModal" tabindex="-1">

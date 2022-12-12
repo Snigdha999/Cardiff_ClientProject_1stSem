@@ -4,6 +4,10 @@ import com.project.model.Statistics;
 import com.project.model.StudentApplication;
 import com.project.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
@@ -96,6 +100,14 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public void deleteAll() {
         statisticsRepository.deleteAll();
+    }
+
+
+    @Override
+    public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize) {
+
+        Pageable statisticPageable = PageRequest.of(statisticPageNo - 1, statisticPageSize);
+        return this.statisticsRepository.findAll(statisticPageable);
     }
 
 }
