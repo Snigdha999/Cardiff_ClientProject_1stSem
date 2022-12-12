@@ -41,7 +41,7 @@ public interface StudentApplicationService {
     /* Creating the method of pagination for students' applications
      * @param applicationPageNo
      */
-    Page<StudentApplication> findApplicationPaginated(int applicationPageNo, int applicationPageSize);
+    Page<StudentApplication> findApplicationPaginated(int applicationPageNo, int applicationPageSize, String applicationSortField, String applicationSortDirection);
 
     /* Delete all the data
      */
