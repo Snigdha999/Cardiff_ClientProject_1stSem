@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.model.ApplicationStatus;
 import com.project.model.StudentApplication;
 import com.project.repository.StudentApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,16 +80,23 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
     public int getAmountOfOffers(){
         int counter = 0;
         List<StudentApplication> applications = studentApplicationRepository.findAll();
-        for(int i=0; i < applications.size(); i++){
-            String status = applications.get(i).displayApplicationStatus();
+        for(StudentApplication application : applications){
+            List<ApplicationStatus> status = application.getApplicationStatus();
             // status = "CFUF" , offer + 1
-            if(status.equals("CFUF")){
-                counter += 1;
+            if(status != null) {
+                int condition = 0;
+                for (ApplicationStatus c : status) {
+                    if (c.name().equals("CF") || c.name().equals("UF")) {
+                        condition += 1;
+                    }
+                }
+                if(condition == 2){
+                    counter += 1;
+                }
             }
         }
         return counter;
     }
-
 
     /* Creating the method of pagination for students' applications
      * @param applicationPageNo
@@ -99,5 +107,10 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
         return this.studentApplicationRepository.findAll(applicationPageable);
     }
 
-
+    /* Delete all the data
+     */
+    @Override
+    public void deleteAll() {
+        studentApplicationRepository.deleteAll();
+    }
 }

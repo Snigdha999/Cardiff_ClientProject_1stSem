@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
     <div class="card" id="logInCard">
         <form th:action="@{/login}" method="post" id="logInForm">
             <div id="logoContainer">
-                <img src="../images/logo.svg" id="logo" alt="">
+                <img th:src="@{images/logo.svg}" id="logo" alt="">
                 <div id="labelContainer">
                     <label>Recriwtio a Derbyn</label>
                     <label>Recruitment and Admissions</label>
@@ -30,7 +30,7 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
             <div th:if="${param.error}" class="error">⚠ Your username or password was incorrect</div>
-            <button type="submit" form="logInForm">Log In</button>
+            <input type="submit" form="logInForm" value="Log in">
             
         </form>
     </div>

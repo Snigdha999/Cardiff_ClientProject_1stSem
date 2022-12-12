@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="template :: header"></div>
+</head>
+<body>
+<!-- Navigation bar -->
+<nav th:replace="template :: navbar('settings')"></nav>
+<!-- Main page -->
+<main>
+    <!-- New Modal -->
+    <div class="card w-75">
+        <div class="card-header">
+            Edit Account
+        </div>
+        <div class="card-body">
+            <form th:action="@{/editAccount/{id}(id=${updateAccount.id})}" th:object="${newAccount}" method="post" class="form">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input th:value="${updateAccount.username}" type="text" required class="form-control" id="username" aria-describedby="username" placeholder="ExampleUser" field="*{username}" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input th:value="${updateAccount.password}" type="password" required class="form-control" id="password" field="*{password}" name="password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Account Type</label>
+                    <div class="form-check"> 
+                        <input class="form-check-input" type="radio" name="accountType" id="accountType2" field="*{accountType}" value="User" th:checked="${updateAccount.getAccountType()?.equals('User')}">
+                        <label class="form-check-label" for="accountType2"> User (Can view data) </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="accountType" id="accountType1" field="*{accountType}" value="Admin" th:checked="${updateAccount.getAccountType()?.equals('Admin')}">
+                        <label class="form-check-label" for="accountType1"> Admin (Can edit, delete and view data) </label>
+                    </div>
+                </div>
+                <a href="/accounts" class="btn btn-secondary submit-button">Back</a>
+                <button type="submit" class="btn btn-danger submit-button">Apply changes</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

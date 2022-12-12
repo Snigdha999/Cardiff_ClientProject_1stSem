@@ -42,4 +42,8 @@ public interface StudentApplicationService {
      * @param applicationPageNo
      */
     Page<StudentApplication> findApplicationPaginated(int applicationPageNo, int applicationPageSize);
+
+    /* Delete all the data
+     */
+    public void deleteAll();
 }

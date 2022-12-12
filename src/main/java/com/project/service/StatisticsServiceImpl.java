@@ -59,6 +59,9 @@ public class StatisticsServiceImpl implements StatisticsService {
         this.statisticsRepository.deleteById(id);
     }
 
+    /* Find all the data in the Statistics table on the basis of study year
+     * @return List
+     */
     @Override
     public List<Statistics> findAllByStudyYear() {
         //If data is available, the list information is processed in descending
@@ -86,6 +89,13 @@ public class StatisticsServiceImpl implements StatisticsService {
 //
         return statisticsList;
         }
+    }
+
+    /* Delete all the data
+     */
+    @Override
+    public void deleteAll() {
+        statisticsRepository.deleteAll();
     }
 
 }
