@@ -4,6 +4,10 @@ import com.project.model.Statistics;
 import com.project.model.StudentApplication;
 import com.project.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
@@ -97,6 +101,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
 
     @Override
+
     public int predictPlaces() {
         double profit = 0;
         double avgProfit = 0;
@@ -128,4 +133,14 @@ public class StatisticsServiceImpl implements StatisticsService {
         }
         return (int) prediction;
     }
+
+    public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection) {
+        Sort statisticSort = statisticSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(statisticSortField).ascending() :
+                Sort.by(statisticSortField).descending();
+
+        Pageable statisticPageable = PageRequest.of(statisticPageNo - 1, statisticPageSize, statisticSort);
+        return this.statisticsRepository.findAll(statisticPageable);
+    }
+
+
 }

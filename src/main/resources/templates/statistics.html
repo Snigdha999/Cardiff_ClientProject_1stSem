@@ -56,7 +56,10 @@
             <thead class="table-light">
             <tr>
                 <th scope="col" class="first-column"></th>
-                <th scope="col">Year</th>
+                <th scope="col">
+                    <a th:href="@{'/statisticPage/' + ${currentStatisticPage} + '?statisticSortField=studyYear&statisticSortDir=' + ${reverseStatisticSortDir}}">
+                        Year</a>
+                </th>
                 <th scope="col">Places</th>
                 <th scope="col">Offers</th>
             </tr>
@@ -74,6 +77,34 @@
             </tr>
             </tbody>
         </table>
+
+
+        <div th:if = "${statisticTotalPages > 1}">
+            <div class = "row col-sm-10">
+                <div class = "col-sm-2">
+                    Total Rows: [[${statisticTotalItems}]]
+                </div>
+
+                <div class = "col-sm-1">
+                    <span th:each="i: ${#numbers.sequence(1, statisticTotalPages)}">
+                        <a th:if="${currentStatisticPage != i}" th:href="@{'/statisticPage/' + ${i} + '?statisticSortField=' + ${statisticSortField} + '&statisticSortDir=' + ${statisticSortDir}}">[[${i}]]</a>
+                        <span th:unless="${currentStatisticPage != i}">[[${i}]]</span> &nbsp;&nbsp;
+                    </span>
+                </div>
+
+                <div class = "col-sm-1">
+                    <a th:if="${currentStatisticPage < statisticTotalPages}" th:href="@{'/statisticPage/' + ${currentStatisticPage + 1} + '?statisticSortField=' + ${statisticSortField} + '&statisticSortDir=' + ${statisticSortDir}}">NEXT</a>
+                    <span th:unless="${currentStatisticPage < statisticTotalPages}">NEXT</span>
+                </div>
+
+                <div class = "col-sm-1">
+                    <a th:if="${currentStatisticPage < statisticTotalPages}" th:href="@{'/statisticPage/' + ${statisticTotalPages} + '?statisticSortField=' + ${statisticSortField} + '&statisticSortDir=' + ${statisticSortDir}}">LAST</a>
+                    <span th:unless="${currentStatisticPage < statisticTotalPages}">LAST</span>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <!-- Add Statistics Modal -->
     <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="addStatisticsModal" tabindex="-1">
