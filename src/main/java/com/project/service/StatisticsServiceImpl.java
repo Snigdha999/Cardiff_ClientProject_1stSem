@@ -11,10 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -104,6 +101,39 @@ public class StatisticsServiceImpl implements StatisticsService {
 
 
     @Override
+
+    public int predictPlaces() {
+        double profit = 0;
+        double avgProfit = 0;
+        double prediction = 0;
+        List<Statistics> statistics = statisticsRepository.findAll();
+        if (statistics.size() != 0) {
+            for (int i = 0; i < statistics.size()-1; i++) {
+                    profit += statistics.get(i+1).getPlaces() - statistics.get(i).getPlaces();
+            }
+            avgProfit = profit / (statistics.size()-1);
+            prediction = statistics.get(statistics.size()-1).getPlaces() + avgProfit ;
+        }
+        return (int) prediction;
+    }
+
+    @Override
+    public int predictOffers() {
+        double profit = 0;
+        double avgProfit = 0;
+        double prediction = 0;
+        List<Statistics> statistics = statisticsRepository.findAll();
+        if (statistics.size() != 0) {
+            for (int i = 0; i < statistics.size()-1; i++) {
+                    profit += statistics.get(i+1).getOffers() - statistics.get(i).getOffers();
+
+            }
+            avgProfit = profit / (statistics.size()-1);
+            prediction = statistics.get(statistics.size()-1).getOffers() + avgProfit ;
+        }
+        return (int) prediction;
+    }
+
     public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection) {
         Sort statisticSort = statisticSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(statisticSortField).ascending() :
                 Sort.by(statisticSortField).descending();
@@ -111,5 +141,6 @@ public class StatisticsServiceImpl implements StatisticsService {
         Pageable statisticPageable = PageRequest.of(statisticPageNo - 1, statisticPageSize, statisticSort);
         return this.statisticsRepository.findAll(statisticPageable);
     }
+
 
 }

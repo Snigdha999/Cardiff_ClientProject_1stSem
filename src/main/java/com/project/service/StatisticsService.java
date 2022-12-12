@@ -38,6 +38,9 @@ public interface StatisticsService {
      */
     public void deleteAll();
 
-    Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection);
 
+    public int predictPlaces();
+    public int predictOffers();
+
+    Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection);
 }
