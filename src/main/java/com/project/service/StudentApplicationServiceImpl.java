@@ -4,6 +4,9 @@ import com.project.model.ApplicationStatus;
 import com.project.model.StudentApplication;
 import com.project.repository.StudentApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -93,6 +96,15 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
             }
         }
         return counter;
+    }
+
+    /* Creating the method of pagination for students' applications
+     * @param applicationPageNo
+     */
+    @Override
+    public Page<StudentApplication> findApplicationPaginated(int applicationPageNo, int applicationPageSize) {
+        Pageable applicationPageable = PageRequest.of(applicationPageNo - 1, applicationPageSize);
+        return this.studentApplicationRepository.findAll(applicationPageable);
     }
 
     /* Delete all the data
