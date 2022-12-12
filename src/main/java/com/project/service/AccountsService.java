@@ -1,6 +1,8 @@
 package com.project.service;
 
 import com.project.model.Accounts;
+import com.project.model.Statistics;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -26,5 +28,7 @@ public interface AccountsService  {
      * @return Accounts
      */
     public Accounts getAccountById(int id);
+
+    Page<Accounts> findAccountPaginated(int accountPageNo, int accountPageSize, String accountSortField, String accountSortDirection);
 
 }

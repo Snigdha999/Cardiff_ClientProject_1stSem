@@ -1,8 +1,13 @@
 package com.project.service;
 
 import com.project.model.Accounts;
+import com.project.model.Statistics;
 import com.project.repository.AccountsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,4 +57,14 @@ public class AccountsServiceImpl implements AccountsService {
         }
         return accounts;
     }
+
+    @Override
+    public Page<Accounts> findAccountPaginated(int accountPageNo, int accountPageSize, String accountSortField, String accountSortDirection) {
+        Sort accountSort = accountSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(accountSortField).ascending() :
+                Sort.by(accountSortField).descending();
+
+        Pageable statisticPageable = PageRequest.of(accountPageNo - 1, accountPageSize, accountSort);
+        return this.accountsRepository.findAll(statisticPageable);
+    }
+
 }
