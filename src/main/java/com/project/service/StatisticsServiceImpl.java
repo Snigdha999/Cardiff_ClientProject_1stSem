@@ -104,9 +104,11 @@ public class StatisticsServiceImpl implements StatisticsService {
 
 
     @Override
-    public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize) {
+    public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection) {
+        Sort statisticSort = statisticSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(statisticSortField).ascending() :
+                Sort.by(statisticSortField).descending();
 
-        Pageable statisticPageable = PageRequest.of(statisticPageNo - 1, statisticPageSize);
+        Pageable statisticPageable = PageRequest.of(statisticPageNo - 1, statisticPageSize, statisticSort);
         return this.statisticsRepository.findAll(statisticPageable);
     }
 

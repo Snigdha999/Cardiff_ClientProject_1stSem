@@ -27,7 +27,7 @@ public class StatisticsController {
     @GetMapping("/statistics")
     public String viewStatisticsPage(Model model) {
 
-        return findStatisticPaginated(1,model);
+        return findStatisticPaginated(1, "studyYear", "asc", model);
     }
 
     @PostMapping("/addStatistics")
@@ -90,15 +90,21 @@ public class StatisticsController {
 
     @GetMapping("/statisticPage/{statisticPageNo}")
     public String findStatisticPaginated(@PathVariable (value = "statisticPageNo") int statisticPageNo,
+                                         @RequestParam("statisticSortField") String statisticSortField,
+                                         @RequestParam("statisticSortDir") String statisticSortDir,
                                            Model model){
         int statisticPageSize = 4;
 
-        Page<Statistics> statisticPage = statisticsService.findStatisticPaginated(statisticPageNo, statisticPageSize);
+        Page<Statistics> statisticPage = statisticsService.findStatisticPaginated(statisticPageNo, statisticPageSize, statisticSortField, statisticSortDir);
         List<Statistics> statistics = statisticPage.getContent();
 
         model.addAttribute("currentStatisticPage", statisticPageNo);
         model.addAttribute("statisticTotalPages", statisticPage.getTotalPages());
         model.addAttribute("statisticTotalItems", statisticPage.getTotalElements());
+
+        model.addAttribute("statisticSortField",statisticSortField);
+        model.addAttribute("statisticSortDir",statisticSortDir);
+        model.addAttribute("reverseStatisticSortDir", statisticSortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listStatistics", statistics);
 
