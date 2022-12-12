@@ -56,8 +56,8 @@
                         <p class="card-text ">Number of the offers we have made for students:</p>
                         <p class="card-text fw-bold" th:text="${amountOfOffers}"></p>
                     </div>
-                    <a href="/applications" class="btn btn-danger">View Details</a>
                 </div>
+                <a href="/applications" class="btn btn-danger">View Details</a>
             </div>
         </div>
 
@@ -112,10 +112,13 @@
                 tooltip:{
                     headerFormat:'<span style="font-size:16px font-weight:500">{point.key}</span><table>',
                     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}:</td>' +
-                        '<td style="padding:0"><b>{point.y:.1f} K</b></td></tr>',
+                        '<td style="padding:0"><b>{point.y:.0f} applications</b></td></tr>',
                     footerFormat:'</table>',
                     shared: true,
                     useHTML:true
+                },
+                credits: {
+                    enabled: false
                 },
                 plotOptions:{
                     column:{
@@ -144,6 +147,42 @@
     <h2 lass="mb-1">
         Calculations:
     </h2>
+    <div class="boximages2">
+
+        <div class="col-sm-4 cardbox">
+            <div class="card">
+                <div class="image-container">
+                    <img th:src="@{images/place_card.png}" width="100px" alt="card4">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <h5 class="card-title">Prediction of Places</h5>
+                        <p class="card-text">Number of funded places we can offer students:</p>
+                        <p class="card-text fw-bold" th:text="${predictPlaces}"></p>
+                    </div>
+                    <!--Current year places                    -->
+                    <a href="/statistics" class="btn btn-danger">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 cardbox">
+            <div class="card">
+                <div class="image-container">
+                    <img th:src="@{images/offer_card.png}" width="100px" alt="card5">
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <h5 class="card-title">Predication of Offers</h5>
+                        <p class="card-text ">Number of the offers we have make for students:</p>
+                        <p class="card-text fw-bold" th:text="${predictOffers}"></p>
+                    </div>
+                </div>
+                <a href="/statistics" class="btn btn-danger">View Details</a>
+            </div>
+        </div>
+
+
+    </div>
 
 </main>
 </body>

@@ -74,8 +74,14 @@
                 <th scope="col">Personal Id</th>
                 <th scope="col">Application Status Code</th>
                 <th scope="col">Lastest Decision Code (CAP)</th>
-                <th scope="col">First Forename</th>
-                <th scope="col">Surname</th>
+                <th scope="col">
+                    <a th:href="@{'/applicationPage/' + ${currentApplicationPage} + '?applicationSortField=name&applicationSortDir=' + ${reverseApplicationSortDir}}">
+                    First Forename</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/applicationPage/' + ${currentApplicationPage} + '?applicationSortField=surname&applicationSortDir=' + ${reverseApplicationSortDir}}">
+                    Surname</a>
+                </th>
                 <th scope="col">Date of Birth</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Fee Status</th>
@@ -176,18 +182,18 @@
 
                 <div class = "col-sm-1">
                     <span th:each="i: ${#numbers.sequence(1, applicationTotalPages)}">
-                        <a th:if="${currentApplicationPage != i}" th:href="@{'/applicationPage/' + ${i}}">[[${i}]]</a>
-                        <span th:unless="${currentApplicationPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                        <a th:if="${currentApplicationPage != i}" th:href="@{'/applicationPage/' + ${i} + '?applicationSortField=' + ${applicationSortField} + '&applicationSortDir=' + ${applicationSortDir}}">[[${i}]]</a>
+                        <span th:unless="${currentApplicationPage != i}">[[${i}]]</span> &nbsp;&nbsp;
                     </span>
                 </div>
 
                 <div class = "col-sm-1">
-                    <a th:if="${currentApplicationPage < applicationTotalPages}" th:href="@{'/applicationPage/' + ${currentApplicationPage + 1}}">NEXT</a>
+                    <a th:if="${currentApplicationPage < applicationTotalPages}" th:href="@{'/applicationPage/' + ${currentApplicationPage + 1} + '?applicationSortField=' + ${applicationSortField} + '&applicationSortDir=' + ${applicationSortDir}}">NEXT</a>
                     <span th:unless="${currentApplicationPage < applicationTotalPages}">NEXT</span>
                 </div>
 
                 <div class = "col-sm-1">
-                    <a th:if="${currentApplicationPage < applicationTotalPages}" th:href="@{'/applicationPage/' + ${applicationTotalPages}}">LAST</a>
+                    <a th:if="${currentApplicationPage < applicationTotalPages}" th:href="@{'/applicationPage/' + ${applicationTotalPages} + '?applicationSortField=' + ${applicationSortField} + '&applicationSortDir=' + ${applicationSortDir}}">LAST</a>
                     <span th:unless="${currentApplicationPage < applicationTotalPages}">LAST</span>
                 </div>
             </div>

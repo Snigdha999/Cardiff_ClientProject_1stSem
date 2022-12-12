@@ -37,16 +37,18 @@ public class StudentApplicationController {
 
         else{
             int applicationPageSize = 4;
-            Page<StudentApplication> applicationPage = studentApplicationService.findApplicationPaginated(1, applicationPageSize);
+            Page<StudentApplication> applicationPage = studentApplicationService.findApplicationPaginated(1, applicationPageSize, "name", "asc");
             List<StudentApplication> applications = applicationPage.getContent();
             model.addAttribute("currentApplicationPage", 1);
             model.addAttribute("applicationTotalPages", applicationPage.getTotalPages());
             model.addAttribute("applicationTotalItems", applicationPage.getTotalElements());
+
+            model.addAttribute("applicationSortField","name");
+            model.addAttribute("applicationSortDir","asc");
+            model.addAttribute("reverseApplicationSortDir", "asc");
+
             model.addAttribute("listApplications", applications);
             model.addAttribute("applicationStatusList", ApplicationStatus.values());
-            if(applications.size() == 0) {
-                return "noApplicationsFound";
-            }
         }
 
         return "applications";
@@ -93,16 +95,25 @@ public class StudentApplicationController {
     }
 
     @GetMapping("/applicationPage/{applicationPageNo}")
-    public String findApplicationPaginated(@PathVariable (value = "applicationPageNo") int applicationPageNo, Model model){
+    public String findApplicationPaginated(@PathVariable (value = "applicationPageNo") int applicationPageNo,
+                                           @RequestParam("applicationSortField") String applicationSortField,
+                                           @RequestParam("applicationSortDir") String applicationSortDir,
+                                           Model model){
         int applicationPageSize = 4;
 
-        Page<StudentApplication> applicationPage = studentApplicationService.findApplicationPaginated(applicationPageNo, applicationPageSize);
+        Page<StudentApplication> applicationPage = studentApplicationService.findApplicationPaginated(applicationPageNo, applicationPageSize, applicationSortField, applicationSortDir);
         List<StudentApplication> applications = applicationPage.getContent();
 
         model.addAttribute("currentApplicationPage", applicationPageNo);
         model.addAttribute("applicationTotalPages", applicationPage.getTotalPages());
         model.addAttribute("applicationTotalItems", applicationPage.getTotalElements());
+
         model.addAttribute("listApplications", applications);
+
+        model.addAttribute("applicationSortField",applicationSortField);
+        model.addAttribute("applicationSortDir",applicationSortDir);
+        model.addAttribute("reverseApplicationSortDir", applicationSortDir.equals("asc") ? "desc" : "asc");
+
         model.addAttribute("applicationStatusList", ApplicationStatus.values());
 
         return "applications";
@@ -129,7 +140,7 @@ public class StudentApplicationController {
         studentApplicationService.deleteAll();
         return "redirect:/applications";
     }
-        
+
     @GetMapping("/getStudentApplicationStatus/{id}")
     public String getStudentApplicationStatus(@PathVariable (value = "id") int id, Model model){
         StudentApplication application = studentApplicationService.getStudentApplicationById(id);

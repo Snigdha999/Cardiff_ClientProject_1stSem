@@ -2,6 +2,7 @@ package com.project.service;
 
 import com.project.model.Statistics;
 import com.project.model.StudentApplication;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -37,4 +38,9 @@ public interface StatisticsService {
      */
     public void deleteAll();
 
+
+    public int predictPlaces();
+    public int predictOffers();
+
+    Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection);
 }

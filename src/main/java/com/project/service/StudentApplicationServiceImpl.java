@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -102,8 +103,10 @@ public class StudentApplicationServiceImpl implements StudentApplicationService 
      * @param applicationPageNo
      */
     @Override
-    public Page<StudentApplication> findApplicationPaginated(int applicationPageNo, int applicationPageSize) {
-        Pageable applicationPageable = PageRequest.of(applicationPageNo - 1, applicationPageSize);
+    public Page<StudentApplication> findApplicationPaginated(int applicationPageNo, int applicationPageSize, String applicationSortField, String applicationSortDirection) {
+        Sort applicationSort = applicationSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(applicationSortField).ascending() :
+                Sort.by(applicationSortField).descending();
+        Pageable applicationPageable = PageRequest.of(applicationPageNo - 1, applicationPageSize, applicationSort);
         return this.studentApplicationRepository.findAll(applicationPageable);
     }
 
