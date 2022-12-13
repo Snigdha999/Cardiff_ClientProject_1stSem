@@ -24,7 +24,7 @@
         <small class="text-muted">for the School of Healthcare Sciences</small>
     </h1>
 
-    <h3 class="mb-1">
+    <h3 class="mb-1" style="font-family: franklin_gothic_fs_bookRg,Arial,Helvetica Neue,sans-serif">
         Current Statistics:
     </h3>
 
@@ -56,8 +56,8 @@
                         <p class="card-text ">Number of the offers we have made for students:</p>
                         <p class="card-text fw-bold" th:text="${amountOfOffers}"></p>
                     </div>
+                    <a href="/applications" class="btn btn-danger">View Details</a>
                 </div>
-                <a href="/applications" class="btn btn-danger">View Details</a>
             </div>
         </div>
 
@@ -69,17 +69,17 @@
                 <div class="card-body">
                     <div class="card-info">
                         <h5 class="card-title">Amount of Places</h5>
-                        <p class="card-text">Nnmber of funded places we can offer students:</p>
+                        <p class="card-text">Number of funded places we can offer students:</p>
                         <p class="card-text fw-bold" th:text="${amountOfPlace} ?: 'No Update'"></p>
                     </div>
-                    <!--Current year places                    -->
+                    <!--Current year places-->
                     <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <h2 class="mb-1 mt-3">
+    <h2 class="mb-2 mt-4" style="font-family: franklin_gothic_fs_bookRg,Arial,Helvetica Neue,sans-serif">
         Bar Chart:
     </h2>
     <div class="container">
@@ -144,8 +144,8 @@
 
     </script>
 
-    <h2 lass="mb-1">
-        Calculations:
+    <h2 class="mb-2" style="font-family: franklin_gothic_fs_bookRg,Arial,Helvetica Neue,sans-serif">
+        Prediction for upcoming year:
     </h2>
     <div class="boximages2">
 
@@ -157,10 +157,10 @@
                 <div class="card-body">
                     <div class="card-info">
                         <h5 class="card-title">Prediction of Places</h5>
-                        <p class="card-text">Number of funded places we can offer students:</p>
+                        <p class="card-text">Number of funded places predicted for upcoming year:</p>
                         <p class="card-text fw-bold" th:text="${predictPlaces}"></p>
                     </div>
-                    <!--Current year places                    -->
+                    <!--Next year places-->
                     <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
             </div>
@@ -173,11 +173,12 @@
                 <div class="card-body">
                     <div class="card-info">
                         <h5 class="card-title">Predication of Offers</h5>
-                        <p class="card-text ">Number of the offers we have make for students:</p>
+                        <p class="card-text ">Number of the offers predicted for upcoming year:</p>
                         <p class="card-text fw-bold" th:text="${predictOffers}"></p>
                     </div>
+                    <a href="/statistics" class="btn btn-danger">View Details</a>
                 </div>
-                <a href="/statistics" class="btn btn-danger">View Details</a>
+
             </div>
         </div>
 
