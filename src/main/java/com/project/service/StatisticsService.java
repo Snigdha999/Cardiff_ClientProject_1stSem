@@ -2,6 +2,7 @@ package com.project.service;
 
 import com.project.model.Statistics;
 import com.project.model.StudentApplication;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -28,11 +29,18 @@ public interface StatisticsService {
      */
     public void deleteStatisticsById(int id);
 
-    /* query the data in the Statistics table by year
-     *
+    /* Find all the data in the Statistics table on the basis of study year
+     * @return List
      */
-    List<Statistics> findAllByStudyYear();
+    public List<Statistics> findAllByStudyYear();
 
-    void deleteAll();
+    /* Delete all the data
+     */
+    public void deleteAll();
 
+
+    public int predictPlaces();
+    public int predictOffers();
+
+    Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection);
 }

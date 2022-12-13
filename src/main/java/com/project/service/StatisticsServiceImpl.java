@@ -4,13 +4,14 @@ import com.project.model.Statistics;
 import com.project.model.StudentApplication;
 import com.project.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -59,6 +60,9 @@ public class StatisticsServiceImpl implements StatisticsService {
         this.statisticsRepository.deleteById(id);
     }
 
+    /* Find all the data in the Statistics table on the basis of study year
+     * @return List
+     */
     @Override
     public List<Statistics> findAllByStudyYear() {
         //If data is available, the list information is processed in descending
@@ -88,9 +92,56 @@ public class StatisticsServiceImpl implements StatisticsService {
         }
     }
 
+    /* Delete all the data
+     */
     @Override
     public void deleteAll() {
         statisticsRepository.deleteAll();
     }
+
+
+    @Override
+
+    public int predictPlaces() {
+        double profit = 0;
+        double avgProfit = 0;
+        double prediction = 0;
+        List<Statistics> statistics = statisticsRepository.findAll();
+        if (statistics.size() != 0) {
+            for (int i = 0; i < statistics.size()-1; i++) {
+                    profit += statistics.get(i+1).getPlaces() - statistics.get(i).getPlaces();
+            }
+            avgProfit = profit / (statistics.size()-1);
+            prediction = statistics.get(statistics.size()-1).getPlaces() + avgProfit ;
+        }
+        return (int) prediction;
+    }
+
+    @Override
+    public int predictOffers() {
+        double profit = 0;
+        double avgProfit = 0;
+        double prediction = 0;
+        List<Statistics> statistics = statisticsRepository.findAll();
+        if (statistics.size() != 0) {
+            for (int i = 0; i < statistics.size()-1; i++) {
+                    profit += statistics.get(i+1).getOffers() - statistics.get(i).getOffers();
+
+            }
+            avgProfit = profit / (statistics.size()-1);
+            prediction = statistics.get(statistics.size()-1).getOffers() + avgProfit ;
+        }
+        return (int) prediction;
+    }
+
+    @Override
+    public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection) {
+        Sort statisticSort = statisticSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(statisticSortField).ascending() :
+                Sort.by(statisticSortField).descending();
+
+        Pageable statisticPageable = PageRequest.of(statisticPageNo - 1, statisticPageSize, statisticSort);
+        return this.statisticsRepository.findAll(statisticPageable);
+    }
+
 
 }

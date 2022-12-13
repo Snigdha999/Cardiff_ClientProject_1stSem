@@ -47,6 +47,9 @@ public class HomeController {
         model.addAttribute("amountOfApplications", applicationService.getAmountApplications());
         model.addAttribute("amountOfOffers", applicationService.getAmountOfOffers());
 
+        model.addAttribute("predictPlaces",statisticsService.predictPlaces());
+        model.addAttribute("predictOffers",statisticsService.predictOffers());
+
         return "homepage";
 
     }

@@ -1,10 +1,13 @@
 package com.project.controller;
 
+import com.project.model.ApplicationStatus;
 import com.project.model.Statistics;
+import com.project.model.StudentApplication;
 import com.project.service.StatisticsExcelService;
 import com.project.service.StatisticsService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +26,8 @@ public class StatisticsController {
 
     @GetMapping("/statistics")
     public String viewStatisticsPage(Model model) {
-        model.addAttribute("listStatistics", statisticsService.getAll());
-        return "statistics";
+
+        return findStatisticPaginated(1, "studyYear", "asc", model);
     }
 
     @PostMapping("/addStatistics")
@@ -83,5 +86,30 @@ public class StatisticsController {
     public String updateStudentApplication(@PathVariable (value = "id") int id, @ModelAttribute("newStatistics") Statistics statistics){
         statisticsService.add(statistics);
         return "redirect:/statistics";
+    }
+
+    @GetMapping("/statisticPage/{statisticPageNo}")
+    public String findStatisticPaginated(@PathVariable (value = "statisticPageNo") int statisticPageNo,
+                                         @RequestParam("statisticSortField") String statisticSortField,
+                                         @RequestParam("statisticSortDir") String statisticSortDir,
+                                           Model model){
+        int statisticPageSize = 4;
+
+        Page<Statistics> statisticPage = statisticsService.findStatisticPaginated(statisticPageNo, statisticPageSize, statisticSortField, statisticSortDir);
+        List<Statistics> statistics = statisticPage.getContent();
+
+        model.addAttribute("currentStatisticPage", statisticPageNo);
+        model.addAttribute("statisticTotalPages", statisticPage.getTotalPages());
+        model.addAttribute("statisticTotalItems", statisticPage.getTotalElements());
+
+        model.addAttribute("statisticSortField",statisticSortField);
+        model.addAttribute("statisticSortDir",statisticSortDir);
+        model.addAttribute("reverseStatisticSortDir", statisticSortDir.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("listStatistics", statistics);
+
+
+        return "statistics";
+
     }
 }

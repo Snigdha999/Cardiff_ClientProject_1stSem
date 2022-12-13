@@ -1,8 +1,13 @@
 package com.project.service;
 
 import com.project.model.Accounts;
+import com.project.model.Statistics;
 import com.project.repository.AccountsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +18,7 @@ public class AccountsServiceImpl implements AccountsService {
     @Autowired
     private AccountsRepository accountsRepository;
 
-    /* Getting all data
+    /* Getting all data from the account
      * @return List
      */
     @Override
@@ -21,7 +26,7 @@ public class AccountsServiceImpl implements AccountsService {
         return accountsRepository.findAll();
     }
 
-    /* Adding the data
+    /* Adding the data in the account
      * @param Accounts
      */
     @Override
@@ -29,11 +34,18 @@ public class AccountsServiceImpl implements AccountsService {
         this.accountsRepository.save(accounts);
     }
 
+    /* Deleting an account data by their id
+     * @param id
+     */
     @Override
     public void deleteAccountById(int id) {
         this.accountsRepository.deleteById(id);
     }
 
+    /* Getting an account data by their id
+     * @param id
+     * @return Accounts
+     */
     @Override
     public Accounts getAccountById(int id){
         Optional<Accounts> optional = accountsRepository.findById(id);
@@ -45,4 +57,14 @@ public class AccountsServiceImpl implements AccountsService {
         }
         return accounts;
     }
+
+    @Override
+    public Page<Accounts> findAccountPaginated(int accountPageNo, int accountPageSize, String accountSortField, String accountSortDirection) {
+        Sort accountSort = accountSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(accountSortField).ascending() :
+                Sort.by(accountSortField).descending();
+
+        Pageable statisticPageable = PageRequest.of(accountPageNo - 1, accountPageSize, accountSort);
+        return this.accountsRepository.findAll(statisticPageable);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.project;
 
+import com.project.model.Statistics;
 import com.project.model.StudentApplication;
 import com.project.service.StudentApplicationService;
 import org.assertj.core.api.Assertions;
@@ -28,5 +29,11 @@ public class StudentApplicationServiceTest {
         Assertions.assertThat(studentApplication.size()).isGreaterThan(0);
     }
 
+    @Test
+    public void whenDeleteAllStudentApplication_thenReturnNoStudentApplication() {
+        List<StudentApplication> studentApplication = studentApplicationService.getAll("09456712");
+        studentApplicationService.deleteAll();;
+        Assertions.assertThat(studentApplication.size()).isEqualTo(0);
+    }
 
 }
