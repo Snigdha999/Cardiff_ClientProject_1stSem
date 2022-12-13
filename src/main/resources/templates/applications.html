@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="../css/validation.css">
     <link rel="stylesheet" href="applications.css">
 </head>
+
+<style>
+    footer {
+        width: 100vw;
+        height: 10%;
+        position: fixed;
+        bottom:0;
+        text-align: center;
+        padding: 3px;
+        background-color: #d73648;
+        color: white;
+    }
+
+</style>
+
 <body>
 <!-- Navigation bar -->
 <nav th:replace="template :: navbar('applications')"></nav>
@@ -608,7 +623,16 @@
             </div>
         </div>
     </div>
+
+
 </main>
+
+<footer>
+    <p>2022 - ©️ Team 7<br>
+        MSc SE - Recruitment and Admissions </a></p>
+</footer>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="../Javascript/datepicker.js"></script>
