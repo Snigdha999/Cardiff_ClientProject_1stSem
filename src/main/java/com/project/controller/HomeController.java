@@ -8,13 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
-import static java.time.chrono.JapaneseEra.values;
 
 @Controller
 public class HomeController {

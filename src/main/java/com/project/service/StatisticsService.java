@@ -1,7 +1,6 @@
 package com.project.service;
 
 import com.project.model.Statistics;
-import com.project.model.StudentApplication;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
