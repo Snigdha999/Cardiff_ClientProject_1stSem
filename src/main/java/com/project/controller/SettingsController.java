@@ -1,8 +1,6 @@
 package com.project.controller;
 
 import com.project.model.Accounts;
-import com.project.model.Statistics;
-import com.project.model.StudentApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

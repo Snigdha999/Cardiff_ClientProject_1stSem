@@ -1,7 +1,6 @@
 package com.project.service;
 
 import com.project.model.Statistics;
-import com.project.model.StudentApplication;
 import com.project.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Service

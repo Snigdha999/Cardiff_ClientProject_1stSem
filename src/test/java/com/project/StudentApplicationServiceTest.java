@@ -1,6 +1,5 @@
 package com.project;
 
-import com.project.model.Statistics;
 import com.project.model.StudentApplication;
 import com.project.service.StudentApplicationService;
 import org.assertj.core.api.Assertions;
