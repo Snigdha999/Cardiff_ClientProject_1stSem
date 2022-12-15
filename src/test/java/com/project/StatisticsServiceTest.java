@@ -43,7 +43,7 @@ public class StatisticsServiceTest {
     }
     @Test
     public void deleteStatisticsByIdTests() {
-        statisticsService.deleteStatisticsById(122);
+        statisticsService.deleteStatisticsById(100);
     }
     @Test
     public void predictPlacesTests(){

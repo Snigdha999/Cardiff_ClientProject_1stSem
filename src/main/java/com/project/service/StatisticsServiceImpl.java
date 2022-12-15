@@ -63,9 +63,7 @@ public class StatisticsServiceImpl implements StatisticsService {
      */
     @Override
     public List<Statistics> findAllByStudyYear() {
-        //If data is available, the list information is processed in descending
-        // order by academic year field and returns which row of data for
-        // the year with the largest number.
+        //If data is available, the list information is processed in descending order by academic year field and returns which row of data for the year with the largest number.
         if(this.statisticsRepository.findAll().size()>0){
             return this.statisticsRepository.findAllByStudyYearOrderByStudyYearDesc();
         }
@@ -74,18 +72,6 @@ public class StatisticsServiceImpl implements StatisticsService {
             Statistics s=new Statistics();
             s.setPlaces(0);
             statisticsList.add(s);
-
-            //Please don't delete the code below.
-//        //Get Calendar Object
-//        Calendar cal = Calendar.getInstance();
-//        //Get the current year based on the calendar object.
-//        int year = cal.get(Calendar.YEAR)%100;
-//        //Get next year
-//        int nextYear =(year+1)%100;
-//        //Spliced into the form of the string "22/23".
-//        String keyword =Integer.toString(year)+"/"+Integer.toString(nextYear);
-//        System.out.println(keyword);
-//
         return statisticsList;
         }
     }

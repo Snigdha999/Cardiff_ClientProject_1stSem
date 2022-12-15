@@ -49,7 +49,7 @@ public class StudentApplicationServiceTest {
 
     @Test
     public void deleteStudentApplicationByIdTest(){
-        studentApplicationService.deleteStudentApplicationById(1);
+        studentApplicationService.deleteStudentApplicationById(79);
     }
 
     @Test
