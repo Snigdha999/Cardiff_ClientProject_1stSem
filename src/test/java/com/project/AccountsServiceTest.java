@@ -1,6 +1,7 @@
 package com.project;
 
 import com.project.model.Accounts;
+import com.project.model.Statistics;
 import com.project.service.AccountsService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,20 +25,31 @@ public class AccountsServiceTest {
     }
 
     @Test
-    public void whenGetAllAccounts_thenReturnAllAccounts(){
+    public void TestGetAll(){
         List<Accounts> accounts = accountsService.getAll();
         Assertions.assertThat(accounts.size()).isGreaterThan(0);
     }
 
     @Test
-    public void getAccountByIdTest(){
+    public void TestAdd() {
+        Accounts accounts=new Accounts();
+        accountsService.add(accounts);
+    }
+
+    @Test
+    public void TestGetAccountById(){
         Accounts response =accountsService.getAccountById(6);
         Assertions.assertThat(response.getId()).isEqualTo(6);
     }
 
     @Test
-    public void findAccountPaginatedTest(){
+    public void TestFindAccountPaginated(){
         Page<Accounts> page= accountsService.findAccountPaginated(2,5,"username","asc");
         Assertions.assertThat(page.getSize()).isGreaterThan(0);
+    }
+
+    @Test
+    public void TestDeleteAccountById() {
+        accountsService.deleteAccountById(21);
     }
 }
