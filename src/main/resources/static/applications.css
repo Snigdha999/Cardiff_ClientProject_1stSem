@@ -1,0 +1,39 @@
+.modal-body {
+  padding: 30px;
+}
+
+.application-status {
+  column-count: 2;
+  column-gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.application-status-item {
+  list-style: none;
+  margin: 0;
+}
+
+.edit-status {
+  white-space:nowrap;
+}
+
+.navbar.menu-actions,
+.navbar.menu-actions > .container-fluid{
+ padding: 0;
+}
+
+.navbar-collapse.collapsing,
+.navbar-collapse.collapse.show{
+padding-top: 20px;
+}
+
+.btn {
+ white-space:nowrap;
+}
+
+.fa-solid.fa-star-of-life {
+  color: #dc3545;
+  max-width: 2px;
+  max-height: 2px;
+}

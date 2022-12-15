@@ -1,0 +1,23 @@
+.datepicker {
+   padding: 10px;
+}
+
+.datepicker table tr td.active.active,
+.datepicker table tr td.active,
+.datepicker table tr td.active.active:hover,
+.datepicker table tr td span.active.active,
+.datepicker table tr td span.active:hover.active
+ {
+   background-color: #dc3545;
+   background-image: none;
+}
+
+.datepicker .datepicker-switch, .datepicker .dow {
+    font-weight: 500;
+}
+
+.datepicker td, .datepicker th {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+}

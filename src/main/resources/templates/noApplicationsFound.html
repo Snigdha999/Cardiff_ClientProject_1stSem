@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="template :: header"></div>
+    <link rel="stylesheet" th:href="@{noapplications.css}">
+</head>
+<body>
+<!-- Navigation bar -->
+<nav th:replace="template :: navbar('applications')"></nav>
+<!-- Main page -->
+<main>
+    <div class="buttonRow">
+        <div>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addStatisticsModal">
+                Add application
+            </button>
+            <button type="button" class="btn btn-dark">Export data</button>
+        </div>
+        <form th:action="@{/applications}" class="row g-3" role="search">
+            <div class="col-auto">
+                <label for="search" class="col-form-label">Input Student No:</label>
+            </div>
+            <div class="col-auto">
+                <input class="form-control me-2" type="search" id="search" placeholder="23098723"
+                       aria-label="Search" name="keyword" required>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-dark me-1" type="submit">Search</button>
+                <a href="/applications" class="btn btn-outline-dark me-1">Show all</a>
+            </div>
+        </form>
+    </div>
+   <p class="text">Sorry, no applications found :(</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+.boximages {
+    display: flex;
+    justify-content: space-between;
+}
+
+.boximages2 {
+    display: flex;
+    justify-content: center;
+    gap:50px;
+}
+
+.image-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardbox .card{
+    background-color: #f9f9f9;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    align-items: space-between;
+}
+
+.card-text.fw-bold {
+    font-size: 28px;
+    color: #dc3545;
+}
+
+.cardbox .btn {
+    margin-top: auto;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-info {
+    margin-bottom: 20px;
+}
+
+.headerFont {
+    margin-top: 3rem;
+}
