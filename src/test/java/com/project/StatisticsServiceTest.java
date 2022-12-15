@@ -41,7 +41,7 @@ public class StatisticsServiceTest {
         List<Statistics> statistics = statisticsService.getAll();
         Assertions.assertThat(statistics.size()).isGreaterThan(0);
     }
-   // @Test
+    @Test
     public void deleteStatisticsByIdTests() {
         statisticsService.deleteStatisticsById(122);
     }
