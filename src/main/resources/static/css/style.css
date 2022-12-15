@@ -68,3 +68,11 @@ main
 label[id="username"] {
      margin: 0;
 }
+
+.footer-container{
+    height: 10%;
+    text-align: center;
+    padding: 15px;
+    background-color: #d73648;
+    color: white;
+}
