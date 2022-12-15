@@ -57,6 +57,10 @@ public class AccountsServiceImpl implements AccountsService {
         return accounts;
     }
 
+    /* Getting an account data by their page number
+     * @param accountPageNo, accountPageSize, accountSortField , accountSortDirection
+     * @return List
+     */
     @Override
     public Page<Accounts> findAccountPaginated(int accountPageNo, int accountPageSize, String accountSortField, String accountSortDirection) {
         Sort accountSort = accountSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(accountSortField).ascending() :
@@ -65,5 +69,4 @@ public class AccountsServiceImpl implements AccountsService {
         Pageable statisticPageable = PageRequest.of(accountPageNo - 1, accountPageSize, accountSort);
         return this.accountsRepository.findAll(statisticPageable);
     }
-
 }

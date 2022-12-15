@@ -28,6 +28,10 @@ public interface AccountsService  {
      */
     public Accounts getAccountById(int id);
 
+    /* Getting an account data by their page number
+     * @param accountPageNo, accountPageSize, accountSortField , accountSortDirection
+     * @return List
+     */
     Page<Accounts> findAccountPaginated(int accountPageNo, int accountPageSize, String accountSortField, String accountSortDirection);
 
 }
