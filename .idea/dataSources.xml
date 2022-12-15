@@ -44,5 +44,12 @@
       <jdbc-url>jdbc:mariadb://leggett.live:3306/recruitment_and_admissions</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="leggett.live" uuid="f3720789-4ea6-4d7b-a074-d7a0b3544860">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://leggett.live:3306/recruitment_and_admissions</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
