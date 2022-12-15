@@ -116,3 +116,11 @@ button, input[type=submit]
     margin-bottom: 10px;
     margin-top: 10px;
 }
+
+.footer-container{
+    height: 10%;
+    text-align: center;
+    padding: 15px;
+    background-color: #d73648;
+    color: white;
+}
