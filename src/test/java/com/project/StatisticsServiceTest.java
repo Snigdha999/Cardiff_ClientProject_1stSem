@@ -19,14 +19,42 @@ public class StatisticsServiceTest {
     private StatisticsService statisticsService;
 
     @Test
-    void contextLoads() {
-    }
-
-    @Test
     public void whenGetAllStatistics_thenReturnAllStatistics() {
         List<Statistics> statistics = statisticsService.getAll();
         Assertions.assertThat(statistics.size()).isGreaterThan(0);
     }
 
+    @Test
+    public void addTest() {
+        Statistics statistics=new Statistics();
+         statisticsService.add(statistics);
+    }
+
+    @Test
+    public void getStatisticsByIdTest() {
+        Statistics statistics = statisticsService.getStatisticsById(96);
+        Assertions.assertThat(statistics.getId()).isEqualTo(96);
+    }
+
+    @Test
+    public void findAllByStudyYearTests() {
+        List<Statistics> statistics = statisticsService.getAll();
+        Assertions.assertThat(statistics.size()).isGreaterThan(0);
+    }
+    @Test
+    public void deleteStatisticsByIdTests() {
+        statisticsService.deleteStatisticsById(122);
+    }
+    @Test
+    public void predictPlacesTests(){
+        int response=statisticsService.predictPlaces();
+        Assertions.assertThat(response).isLessThan(0);
+    }
+
+    @Test
+    public void predictOffersTests() {
+        int response = statisticsService.predictOffers();
+        Assertions.assertThat(response).isLessThan(0);
+    }
 
 }

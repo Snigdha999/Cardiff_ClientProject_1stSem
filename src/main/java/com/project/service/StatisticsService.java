@@ -37,9 +37,19 @@ public interface StatisticsService {
      */
     public void deleteAll();
 
-
+    /* Predict the data of places in the Statistics table for upcoming year
+     * @return int
+     */
     public int predictPlaces();
+
+    /* Predict the data of offers in the Statistics table for upcoming year
+     * @return int
+     */
     public int predictOffers();
 
-    Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection);
+
+    /* Getting statistics data by their page number
+     * @return List
+     */
+    public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection);
 }

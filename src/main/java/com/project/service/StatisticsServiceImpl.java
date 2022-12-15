@@ -97,9 +97,10 @@ public class StatisticsServiceImpl implements StatisticsService {
         statisticsRepository.deleteAll();
     }
 
-
+    /* Predict the data of places in the Statistics table for upcoming year
+     * @return int
+     */
     @Override
-
     public int predictPlaces() {
         double profit = 0;
         double avgProfit = 0;
@@ -115,6 +116,10 @@ public class StatisticsServiceImpl implements StatisticsService {
         return (int) prediction;
     }
 
+
+    /* Predict the data of offers in the Statistics table for upcoming year
+     * @return int
+     */
     @Override
     public int predictOffers() {
         double profit = 0;
@@ -132,6 +137,9 @@ public class StatisticsServiceImpl implements StatisticsService {
         return (int) prediction;
     }
 
+    /* Getting statistics data by their page number
+     * @return List
+     */
     @Override
     public Page<Statistics> findStatisticPaginated(int statisticPageNo, int statisticPageSize, String statisticSortField, String statisticSortDirection) {
         Sort statisticSort = statisticSortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(statisticSortField).ascending() :
