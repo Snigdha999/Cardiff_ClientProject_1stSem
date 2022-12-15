@@ -20,7 +20,7 @@ public class HomeController {
     @Autowired
     private StatisticsService statisticsService;
 
-    @GetMapping("/home")
+    @GetMapping({"/", "/home"})
     public String home(Model model) {
         List<Statistics> statisticsList = statisticsService.getAll();
 
