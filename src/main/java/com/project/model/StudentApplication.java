@@ -457,11 +457,6 @@ public class StudentApplication {
             if(statusFromExcelValues.contains(statuses[i].toString())) {
                 result.add(statuses[i]);
             }
-            ;
-
-//            if (Arrays.stream(statusFromExcelValues).filter(x-> x.equals(statuses[i].toString())) {
-//                result.add(statuses[i]);
-//            }
         }
         return result;
     }
