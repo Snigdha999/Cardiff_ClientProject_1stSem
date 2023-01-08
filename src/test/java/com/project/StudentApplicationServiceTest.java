@@ -40,6 +40,7 @@ public class StudentApplicationServiceTest {
        int response= studentApplicationService.getAmountOfOffers();
         Assertions.assertThat(response).isEqualTo(0);
     }
+
     @Test
     public void testFindApplicationPaginated(){
         Page<StudentApplication> page= studentApplicationService.findApplicationPaginated(2,5,"ucasCode","asc");
