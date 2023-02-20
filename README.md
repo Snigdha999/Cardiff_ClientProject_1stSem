@@ -37,12 +37,6 @@ Can predict future data based on data analysis
 |Springboot|3.0.0|
 |org.mariadb.jdbc:mariadb-java-client|?|
 
-## How to connect to our hosted database
-Host: leggett.live \
-Port: 3306 \
-User: group7 \
-Password: pjEwqhugnRjW
-
 Other dependencies are already mentioned in the **build.gradle** and **application.properties** files.
 
 ## How to build
